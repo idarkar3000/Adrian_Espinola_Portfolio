@@ -1,5 +1,5 @@
 /* ============================
-   script.js completo
+   script.js completo (corregido)
    ============================ */
 
 // Smooth scrolling
@@ -33,7 +33,7 @@ if (carousel) {
   const captionDiv = document.createElement('div');
   captionDiv.className = 'carousel-caption';
   captionDiv.style.position = 'absolute';
-  captionDiv.style.bottom = '60px'; // más cerca de la imagen
+  captionDiv.style.bottom = '60px';
   captionDiv.style.left = '50%';
   captionDiv.style.transform = 'translateX(-50%)';
   captionDiv.style.color = 'var(--text)';
@@ -44,7 +44,7 @@ if (carousel) {
   captionDiv.style.borderRadius = '6px';
   captionDiv.style.transition = 'opacity 0.3s';
   captionDiv.style.pointerEvents = 'none';
-  captionDiv.style.opacity = 1; // siempre visible
+  captionDiv.style.opacity = 1;
   carousel.parentElement.appendChild(captionDiv);
 
   // Manejo cuando hay 0,1 o 2 imágenes
@@ -81,7 +81,6 @@ if (carousel) {
       }
     });
 
-    // Actualizar caption siempre visible
     const centerImg = images[currentIndex];
     captionDiv.textContent = centerImg.dataset.caption || centerImg.alt || '';
   }
@@ -99,7 +98,7 @@ if (carousel) {
     }
   });
 
-  // doble-click: abrir lightbox (solo para visibles)
+  // doble-click: abrir lightbox
   carousel.addEventListener('dblclick', (e) => {
     const clicked = e.target;
     if (clicked.tagName !== 'IMG') return;
@@ -164,22 +163,32 @@ function openLightbox(src, alt) {
   document.body.appendChild(lightbox);
 }
 
-// Seleccionamos todas las secciones y links del menú
-const sections = document.querySelectorAll('section, footer');
-const navLinks = document.querySelectorAll('.nav-links li a');
 
-// Función que revisa la sección visible
-function setActiveLink() {
-  let index = sections.length;
+/* ============================
+   Resaltado dinámico en navbar
+   ============================ */
+const sections = document.querySelectorAll("section");
+const navLinks = document.querySelectorAll(".nav-links a");
 
-  while(--index && window.scrollY + 100 < sections[index].offsetTop) {} // +100 para ajustar un poco
+const options = {
+  threshold: 0.5, // el 50% de la sección debe estar visible
+};
 
-  navLinks.forEach((link) => link.classList.remove('active'));
-  navLinks[index].classList.add('active');
-}
+let observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      navLinks.forEach((link) => {
+        link.classList.remove("active");
+        if (link.getAttribute("href") === "#" + entry.target.id) {
+          link.classList.add("active");
+        }
+      });
+    }
+  });
+}, options);
 
-// Ejecutar al hacer scroll
-window.addEventListener('scroll', setActiveLink);
+sections.forEach((section) => {
+  observer.observe(section);
+});
 
-// Ejecutar al cargar la página
-setActiveLink();
+

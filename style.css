@@ -8,6 +8,17 @@
   font-family: "Segoe UI", sans-serif;
 }
 
+#home {
+  display: flex;
+  justify-content: center;      /* centra horizontalmente */
+  align-items: center;          /* centra verticalmente */
+  gap: 1rem;                    /* espacio entre texto e imagen */
+  padding: 1rem 2rem;           /* menos separación lateral */
+  max-width: 1300px;            /* límite de anchura */
+  margin: 0 auto;               /* centra el bloque completo */
+}
+
+
 :root {
   --dark-bg: #0a0a0a;
   --darker-bg: #050505;
@@ -37,17 +48,37 @@ body {
   overflow-x: hidden;
 }
 
+
 /* ======================================
    Intro Section
    ====================================== */
 .intro {
-  position: relative;
-  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
-  overflow: hidden;
+  height: 100vh;
+  position: relative;
+}
+
+.intro-content {
+  z-index: 2;
+}
+
+.intro-name {
+  font-size: 3em;
+  margin-bottom: 0.5em;
+  font-weight: bold;
+  background: linear-gradient(0deg, #0c0a, var(--accent   ));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text; /* para navegadores compatibles */
+}
+
+
+.intro-subtitle {
+  font-size: 1.8em;
+  color: #ffffff; /* subtítulo más neutro para que destaque sobre el fondo */
 }
 
 #particles-js {
@@ -59,24 +90,6 @@ body {
   z-index: -1;
 }
 
-.intro-content {
-  position: relative;
-  z-index: 1;
-}
-
-.intro-name {
-  font-size: 4rem;
-  background: linear-gradient(45deg, var(--accent), #fff);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  margin-bottom: 1rem;
-}
-
-.intro-subtitle {
-  font-size: 1.8rem;
-  color: var(--text);
-  opacity: 0.8;
-}
 
 .scroll-down {
   position: absolute;
@@ -135,6 +148,8 @@ body {
   font-weight: 500;
   transition: all 0.3s ease;
   position: relative;
+  display: inline-block;   /* necesario para que el ::after mida bien */
+  padding-bottom: 6px;     /* espacio para el subrayado */
 }
 
 .nav-links a::after {
@@ -148,9 +163,27 @@ body {
   transition: width 0.3s ease, background 0.3s ease;
 }
 
+/* Subrayado al pasar el ratón */
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+/* Enlace activo */
+.nav-links a.active {
+  color: var(--accent);   /* el texto del activo se pinta en verde */
+  font-weight: 700;       /* lo marcas en negrita */
+}
+
+.nav-links a.active::after {
+  width: 100%;            /* el subrayado se queda fijo */
+  background: var(--accent);
+}
+
+
 /* ======================================
    Hero Section
    ====================================== */
+
 .hero {
   min-height: 100vh;
   display: flex;
@@ -163,8 +196,14 @@ body {
   );
 }
 
+.hero h2{
+
+
+}
+
 .hero-content {
   flex: 1;
+  width: 80%;
   padding-top: 120px;
   padding-right: 3rem;
   z-index: 1;
