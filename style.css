@@ -455,7 +455,8 @@ strong {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.95);
+  /* Cambia el color de fondo para hacerlo más oscuro */
+  background-color: rgba(0, 0, 0, 0.98); 
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -639,4 +640,63 @@ footer {
   .carousel-video.right {
     transform: translate(calc(-50% + 250px), -50%) rotateY(-35deg) scale(1);
   }
+}
+
+/* Estilos para el menú de hamburguesa */
+.nav-toggle {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .nav-toggle {
+        display: block !important;
+        position: absolute;
+        right: 5%;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: 0;
+        height: 100vh;
+        width: 70%;
+        background-color: var(--darker-bg);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transform: translateX(100%);
+        transition: transform 0.3s ease-in-out;
+        z-index: 999;
+        display: none; /* Empezar con el menú oculto */
+    }
+
+    .nav-links.nav-active {
+        transform: translateX(0);
+        display: flex;
+    }
+
+    .nav-links a {
+        font-size: 1.5rem;
+        padding: 1.5rem 0;
+        opacity: 0;
+        transition: opacity 0.5s ease 0.3s;
+    }
+
+    .nav-links.nav-active a {
+        opacity: 1;
+    }
+
+    .logo {
+        padding-left: 5%;
+    }
+    
+    /* Adaptación del carrusel para móviles */
+    .carousel-image.left,
+    .carousel-video.left,
+    .carousel-image.right,
+    .carousel-video.right {
+        transform: translate(calc(-50% - 150px), -50%) rotateY(25deg) scale(0.9);
+    }
 }
