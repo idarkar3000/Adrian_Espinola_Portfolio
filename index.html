@@ -4,23 +4,20 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Portfolio</title>
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+  integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+  crossorigin="anonymous"
+  referrerpolicy="no-referrer"
+/>
 
-    <!-- En el link hay cosas de iconos chulos y tal -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
-      integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
 
-    <!-- Link con el archivo css -->
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <!-- Navegación de la página -->
     <nav class="navbar">
-      <a href="#home" class="logo">Adrián Espínola Gumiel</a>
+      <a href="#intro" class="logo">Adrián Espínola Gumiel</a>
       <ul class="nav-links">
         <li><a href="#intro">Inicio</a></li>
         <li><a href="#home">Sobre mí</a></li>
@@ -30,68 +27,57 @@
       </ul>
     </nav>
 
-    <!--/$$$$$$$                       /$$                     /$$          
-      | $$__  $$                     | $$                    | $$          
-      | $$  \ $$ /$$$$$$   /$$$$$$  /$$$$$$    /$$$$$$   /$$$$$$$  /$$$$$$ 
-      | $$$$$$$//$$__  $$ /$$__  $$|_  $$_/   |____  $$ /$$__  $$ |____  $$
-      | $$____/| $$  \ $$| $$  \__/  | $$      /$$$$$$$| $$  | $$  /$$$$$$$
-      | $$     | $$  | $$| $$        | $$ /$$ /$$__  $$| $$  | $$ /$$__  $$
-      | $$     |  $$$$$$/| $$        |  $$$$/|  $$$$$$$|  $$$$$$$|  $$$$$$$
-      |__/      \______/ |__/         \___/   \_______/ \_______/ \_______/-->
-
     <section id="intro" class="intro">
-  <div id="particles-js"></div>
-  <div class="intro-content">
-    <h1 class="intro-name">Adrián Espínola Gumiel</h1>
-    <h3 class="intro-subtitle">
-      <span id="typing"></span>
-    </h3>
-    <a href="#home" class="scroll-down">
-      <i class="fa-solid fa-angle-down"></i>
-    </a>
-  </div>
-</section>
+      <div id="particles-js"></div>
+      <div class="intro-content">
+        <h1 class="intro-name">Adrián Espínola Gumiel</h1>
+        <h3 class="intro-subtitle">
+          <span id="typing"></span>
+        </h3>
+        <a href="#home" class="scroll-down">
+          <i class="fa-solid fa-angle-down"></i>
+        </a>
+      </div>
+    </section>
 
-<!-- Typed.js -->
-<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
-<script>
-  var typed = new Typed("#typing", {
-    strings: [
-      "Modelador 3D",
-      "Texturizador",
-      "Programador",
-      "Desarrollador de Videojuegos",
-      "Animador 3D",
-      "Artista Digital"
-    ],
-    typeSpeed: 50,
-    backSpeed: 40,
-    backDelay: 1500,
-    loop: true,
-  });
-</script>
-
- <!--/$$$$$$            /$$                                               /$$
-    /$$__  $$          | $$                                              |__/
-    | $$  \__/  /$$$$$$ | $$$$$$$   /$$$$$$   /$$$$$$        /$$$$$$/$$$$  /$$
-    |  $$$$$$  /$$__  $$| $$__  $$ /$$__  $$ /$$__  $$      | $$_  $$_  $$| $$
-    \____  $$| $$  \ $$| $$  \ $$| $$  \__/| $$$$$$$$      | $$ \ $$ \ $$| $$
-    /$$  \ $$| $$  | $$| $$  | $$| $$      | $$_____/      | $$ | $$ | $$| $$
-    |  $$$$$$/|  $$$$$$/| $$$$$$$/| $$      |  $$$$$$$      | $$ | $$ | $$| $$
-    \______/  \______/ |_______/ |__/       \_______/      |__/ |__/ |__/|__/-->
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <script>
+      var typed = new Typed("#typing", {
+        strings: [
+          "Modelador 3D",
+          "Texturizador",
+          "Programador",
+          "Desarrollador de Videojuegos",
+          "Animador 3D",
+          "Artista Digital",
+        ],
+        typeSpeed: 50,
+        backSpeed: 40,
+        backDelay: 1500,
+        loop: true,
+      });
+    </script>
 
     <section id="home" class="hero">
       <div class="hero-content">
         <h1>Sobre mí</h1>
         <p>
-          Aqui hay que poner rollo hola soy tal y me gusta tal y mimimimimi,
-          lore
+          Apasionado del modelado 3D desde 2019, me dedico a la creación de
+          personajes y escenarios, disfrutando del proceso de transformar ideas
+          en figuras y mundos que cobran vida.
         </p>
         <p class="highlight">
-          Aqui supongo que lo que me mola rollo quiero aprender diseño 3d tal y
-          pascual mierdonazo
+          A lo largo de estos años, he trabajado en modelado, animación y
+          renderizado, enfocándome en la calidad visual y la narrativa. Mi
+          objetivo es combinar creatividad y técnica para generar proyectos
+          digitales atractivos y profesionales.
         </p>
-        <a href="#contact" class="cta-button">Let's Connect</a>
+        <a
+          href="cv_Adrian_Espinola_Gumiel.pdf"
+          class="cta-button"
+          target="_blank"
+          >Abrir CV</a
+        >
       </div>
 
       <div class="hero-image">
@@ -99,21 +85,11 @@
       </div>
     </section>
 
-    <!--/$$$   /$$       /$$ /$$ /$$          
- /$$__  $$| $$      |__/| $$| $$          
-| $$  \__/| $$   /$$ /$$| $$| $$  /$$$$$$$
-|  $$$$$$ | $$  /$$/| $$| $$| $$ /$$_____/
- \____  $$| $$$$$$/ | $$| $$| $$|  $$$$$$ 
- /$$  \ $$| $$_  $$ | $$| $$| $$ \____  $$
-|  $$$$$$/| $$ \  $$| $$| $$| $$ /$$$$$$$/
- \______/ |__/  \__/|__/|__/|__/|_______/-->
-
     <div class="container">
       <section id="skills" class="skills">
         <h2>Mis habilidades</h2>
 
         <div class="skills-list">
-          <!-- Modelado Orgánico 3D -->
           <div class="skill-bar">
             <span>Modelado orgánico 3D - 9/10</span>
             <div class="bar">
@@ -121,7 +97,6 @@
             </div>
           </div>
 
-          <!-- Modelado Inorgánico 3D -->
           <div class="skill-bar">
             <span>Modelado inorgánico 3D - 8/10</span>
             <div class="bar">
@@ -129,7 +104,6 @@
             </div>
           </div>
 
-          <!-- Texturizado -->
           <div class="skill-bar">
             <span>Texturizado - 7/10</span>
             <div class="bar">
@@ -137,7 +111,6 @@
             </div>
           </div>
 
-          <!-- Animación -->
           <div class="skill-bar">
             <span>Animación - 5/10</span>
             <div class="bar">
@@ -145,7 +118,6 @@
             </div>
           </div>
 
-          <!-- Rigg -->
           <div class="skill-bar">
             <span>Rigg - 6/10</span>
             <div class="bar">
@@ -153,7 +125,6 @@
             </div>
           </div>
 
-          <!-- Unity -->
           <div class="skill-bar">
             <span>Unity - 7/10</span>
             <div class="bar">
@@ -161,7 +132,6 @@
             </div>
           </div>
 
-          <!-- Programación -->
           <div class="skill-bar">
             <span>Programación - 6/10</span>
             <div class="bar">
@@ -171,51 +141,75 @@
         </div>
       </section>
 
-      <!--/$$$$$$$                                                     /$$             
-    | $$__  $$                                                   | $$             
-    | $$  \ $$ /$$$$$$   /$$$$$$  /$$   /$$  /$$$$$$   /$$$$$$$ /$$$$$$   /$$$$$$$
-    | $$$$$$$//$$__  $$ /$$__  $$| $$  | $$ /$$__  $$ /$$_____/|_  $$_/  /$$_____/
-    | $$____/| $$  \__/| $$  \ $$| $$  | $$| $$$$$$$$| $$        | $$   |  $$$$$$ 
-    | $$     | $$      | $$  | $$| $$  | $$| $$_____/| $$        | $$ /$$\____  $$
-    | $$     | $$      |  $$$$$$/|  $$$$$$$|  $$$$$$$|  $$$$$$$  |  $$$$//$$$$$$$/
-    |__/     |__/       \______/  \____  $$ \_______/ \_______/   \___/ |_______/ 
-                                  /$$  | $$                                       
-                                |  $$$$$$/                                       
-                                  \______/                                        -->
-
-      <!-- Separador -->
       <div class="separator-container">
         <hr class="section-divider" />
       </div>
 
-      <!-- Sección de Proyectos -->
       <section id="projects" class="projects">
         <h2>Proyectos</h2>
-
         <div class="carousel-container">
           <div class="carousel">
-            <img src="render1.png" alt="Dragón" data-caption="Dragón" />
-            <img src="render2.png" alt="Alien" data-caption="Alien" />
-            <img src="render4.jpg" alt="" data-caption="Proyecto 3" />
-            <img src="render3.png" alt="Proyecto 4" data-caption="Proyecto 4" />
-            <img src="render5.png" alt="Proyecto 5" data-caption="Proyecto 5" />
-          </div>
-        </div>
+            <video
+              autoplay
+              muted
+              loop
+              playsinline
+              class="carousel-video"
+              alt="render 1"
+              data-description="•Modelado high poly y posado en ZBrush•Retopología y UVs en Autodesk Maya•Texturizado en Substance Painter•Renderizado final en Marmoset Toolbag"
+            >
+              <source src="render1.mp4" type="video/mp4" />
+              Tu navegador no soporta video.
+            </video>
 
-        <!-- Contenedor para mostrar la descripción de la imagen central -->
-        <div id="carousel-caption" class="carousel-caption"></div>
+            <img
+              src="render2.png"
+              alt="Render 2"
+              class="carousel-image"
+              data-description="•Busto de alienígena con temática speedsculpt•Modelado y texturizado íntegramente en ZBrush"
+            />
+
+            <img
+              src="render3.png"
+              alt="Render 3"
+              class="carousel-image"
+              data-description="•Écorché de figura humana•Estudio de anatomía y modelado de músculos uno a uno•Realizado en ZBrush"
+            />
+
+            <img
+              src="render4.jpg"
+              alt="Render 4"
+              class="carousel-image"
+              data-description="•Proyecto de personaje y escenario de Bloodborne•Personaje: Modelado en ZBrush, retopología en Autodesk Maya, texturizado en Substance Painter•Escenario: Modelado de puente y assets en 3ds Max"
+            />
+
+            <img
+              src="render5.png"
+              alt="Render 5"
+              class="carousel-image"
+              data-description="•Modelado de un Minotauro completo•Cuerpo: Modelado, retopología, unwrap y posado•Hacha: Creada en 3ds Max•Renderizado final en Marmoset Toolbag"
+            />
+
+            <video
+              autoplay
+              muted
+              loop
+              playsinline
+              class="carousel-video"
+              alt="render 6"
+              data-description="•Animación de vehículo futurista•Práctica de animación y composición visual"
+            >
+              <source src="render6.mp4" type="video/mp4" />
+              Tu navegador no soporta video.
+            </video>
+          </div>
+
+          <p class="carousel-caption">
+            Haz doble clic en las imágenes para ver la descripción del proyecto.
+          </p>
+        </div>
       </section>
 
-      <!-- /$$$$$                        /$$                           /$$    
-    /$$__  $$                      | $$                          | $$    
-    | $$  \__/  /$$$$$$  /$$$$$$$  /$$$$$$    /$$$$$$   /$$$$$$$ /$$$$$$  
-    | $$       /$$__  $$| $$__  $$|_  $$_/   |____  $$ /$$_____/|_  $$_/  
-    | $$      | $$  \ $$| $$  \ $$  | $$      /$$$$$$$| $$        | $$    
-    | $$    $$| $$  | $$| $$  | $$  | $$ /$$ /$$__  $$| $$        | $$ /$$
-    |  $$$$$$/|  $$$$$$/| $$  | $$  |  $$$$/|  $$$$$$$|  $$$$$$$  |  $$$$/
-    \______/  \______/ |__/  |__/   \___/   \_______/ \_______/   \___/  -->
-
-      <!-- Separador -->
       <div class="separator-container">
         <hr class="section-divider" />
       </div>
@@ -225,7 +219,7 @@
         <div class="contact-box">
           <p><strong>Nombre:</strong> Adrián Espínola Gumiel</p>
           <p><strong>Email:</strong> 3Despinolagumieladrian@gmail.com</p>
-          <p><strong>Teléfono:</strong> +34 123 456 789</p>
+          <p><strong>Teléfono:</strong> +34 691 77 96 27</p>
 
           <div class="social-links">
             <a
@@ -250,37 +244,22 @@
               href="https://x.com/3DAdrianEG"
               target="_blank"
               rel="noopener no-referrer"
-              ><i class="fa-brands fa-x"></i
+              ><i class="fa-brands fa-x-twitter"></i
             ></a>
           </div>
         </div>
       </section>
     </div>
 
-    <!--/$$$$$                    /$$                        
-| $$_____/                   | $$                        
-| $$     /$$$$$$   /$$$$$$  /$$$$$$    /$$$$$$   /$$$$$$ 
-| $$$$$ /$$__  $$ /$$__  $$|_  $$_/   /$$__  $$ /$$__  $$
-| $$__/| $$  \ $$| $$  \ $$  | $$    | $$$$$$$$| $$  \__/
-| $$   | $$  | $$| $$  | $$  | $$ /$$| $$_____/| $$      
-| $$   |  $$$$$$/|  $$$$$$/  |  $$$$/|  $$$$$$$| $$      
-|__/    \______/  \______/    \___/   \_______/|__/      
-                                                         
-                                                         -->
     <footer>
       <p>Copyright &copy; Adrián Espínola Gumiel</p>
     </footer>
 
-    <!-- Link al documento de js-->
     <script src="script.js"></script>
-
     <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.11.1/tsparticles.bundle.min.js"></script>
-
     <script>
       tsParticles.load("particles-js", {
-        background: {
-          color: "#050505",
-        },
+        background: { color: "#050505" },
         particles: {
           number: { value: 80, density: { enable: true, area: 800 } },
           color: { value: "#2ecc71" },
