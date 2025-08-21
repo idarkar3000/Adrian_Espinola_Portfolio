@@ -113,6 +113,11 @@ h2 {
   backdrop-filter: blur(10px);
   z-index: 1000;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  transition: background-color 0.5s ease;
+}
+
+.navbar.scrolled {
+  background-color: rgba(10, 10, 10, 0.98);
 }
 
 .logo {
@@ -121,16 +126,12 @@ h2 {
   color: var(--accent);
   text-decoration: none;
   padding-left: 2.5rem;
-}
-
-/* REGLAS AÑADIDAS */
-.navbar .logo {
-    opacity: 0;
-    transition: opacity 0.5s ease;
+  opacity: 0; /* Por defecto, el logo está oculto */
+  transition: opacity 0.5s ease;
 }
 
 .navbar.visible .logo {
-    opacity: 1;
+  opacity: 1; /* El logo se hace visible cuando se añade la clase .visible */
 }
 
 .nav-links {
@@ -190,9 +191,9 @@ h2 {
   padding-top: 120px;
   padding-right: 3rem;
   z-index: 1;
-  display: flex;             /* Habilita flexbox en el contenedor */
-  flex-direction: column;    /* Apila los elementos verticalmente */
-  align-items: flex-start;   /* Alinea los hijos al inicio (izquierda) por defecto */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .hero-image {
@@ -239,7 +240,7 @@ h2 {
   opacity: 0.9;
   max-width: 600px;
   text-align: justify;
-    padding: 0px 30px;
+  padding: 0px 30px;
 }
 
 .cta-button {
@@ -251,7 +252,7 @@ h2 {
   text-decoration: none;
   transition: all 0.3s ease;
   overflow: hidden;
-  margin-left: 30px; /* Ajusta este valor para moverlo los píxeles que quieras a la derecha */
+  margin-left: 30px;
 }
 
 /* ======================================
@@ -282,15 +283,7 @@ h2 {
   color: var(--text);
 }
 
-.bar {
-  width: 90%;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 10px;
-  overflow: hidden;
-  height: 20px;
-  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
-}
+
 
 .fill {
   height: 100%;
@@ -439,15 +432,14 @@ h2 {
   font-size: 2rem;
   color: #fff;
   text-decoration: none;
-  transition: all 0.3s ease; /* animación suave */
-  display: inline-block; /* necesario para que transform funcione bien */
+  transition: all 0.3s ease;
+  display: inline-block;
 }
 
 .social-links a:hover {
   color: var(--accent);
-  transform: translateY(-5px); /* sube 5px al pasar el ratón */
+  transform: translateY(-5px);
 }
-
 
 strong {
   color: var(--accent);
@@ -462,8 +454,7 @@ strong {
   left: 0;
   width: 100%;
   height: 100%;
-  /* Cambia el color de fondo para hacerlo más oscuro */
-  background-color: rgba(0, 0, 0, 0.98); 
+  background-color: rgba(0, 0, 0, 0.98);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -505,7 +496,6 @@ strong {
   max-height: 80vh;
 }
 
-/* Nuevo estilo para la lista esquematizada en el modal */
 .project-lightbox .description-box ul {
   list-style-type: none;
   padding-left: 0;
@@ -541,7 +531,6 @@ strong {
   z-index: 10001;
 }
 
-/* Estilos para las flechas de navegación en el modal */
 .nav-button {
   position: absolute;
   top: 50%;
@@ -642,16 +631,64 @@ footer {
   .carousel-video.right {
     transform: translate(calc(-50% + 250px), -50%) rotateY(-35deg) scale(1);
   }
-  
+
   /* Adaptación del carrusel para móviles */
   .carousel-image.left,
   .carousel-video.left,
   .carousel-image.right,
   .carousel-video.right {
-      transform: translate(calc(-50% - 150px), -50%) rotateY(25deg) scale(0.9);
+    transform: translate(calc(-50% - 150px), -50%) rotateY(25deg) scale(0.9);
   }
 
   .logo {
     padding-left: 5%;
+  }
+
+  /* Estilos del menú de hamburguesa */
+  .hamburger-menu {
+    display: block; /* Muestra el menú de hamburguesa en pantallas pequeñas */
+    cursor: pointer;
+    padding: 10px;
+    z-index: 1001;
+  }
+
+  .hamburger-menu .bar {
+    width: 25px;
+    height: 3px;
+    background-color: var(--accent);
+    margin: 5px 0;
+    transition: 0.4s;
+  }
+
+  /* Oculta los enlaces de la barra de navegación en móviles */
+  .nav-links {
+    display: none; /* Oculta los enlaces de la navbar */
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(5, 5, 5, 0.98);
+    backdrop-filter: blur(10px);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    transform: translateY(-100%); /* Desplazado fuera de la vista */
+    transition: transform 0.5s ease-in-out;
+  }
+
+  .nav-links li {
+    margin: 20px 0;
+  }
+
+  .nav-links a {
+    font-size: 1.5rem;
+  }
+
+  /* Muestra el menú activo */
+  .nav-links.active {
+    display: flex;
+    transform: translateY(0);
   }
 }

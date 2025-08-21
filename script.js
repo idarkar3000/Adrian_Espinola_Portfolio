@@ -15,14 +15,32 @@ window.addEventListener('scroll', () => {
     if (!navbar) return;
     const scrollPosition = window.scrollY;
 
-    const newBackground = scrollPosition > 50 ? 'rgba(10, 10, 10, 0.98)' : 'rgba(10, 10, 10, 0.95)';
-    navbar.style.backgroundColor = newBackground;
+    if (scrollPosition > 50) {
+        navbar.classList.add('scrolled');
+    } else {
+        navbar.classList.remove('scrolled');
+    }
 
     if (scrollPosition > 100) {
         navbar.classList.add('visible');
     } else {
         navbar.classList.remove('visible');
     }
+});
+
+// --- Navbar Hamburguer menu
+const hamburgerMenu = document.querySelector('.hamburger-menu');
+const navLinks = document.querySelector('.nav-links');
+const navLinksAnchor = document.querySelectorAll('.nav-links a');
+
+hamburgerMenu.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+});
+
+navLinksAnchor.forEach(link => {
+    link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+    });
 });
 
 /* ============================
@@ -212,7 +230,6 @@ function openProjectModal(initialIndex) {
         if (mediaElement) contentContainer.appendChild(mediaElement);
         contentContainer.appendChild(descriptionBox);
 
-        // Asegurarse de que el video se reproduzca
         if (mediaElement && mediaElement.tagName === 'VIDEO') {
             mediaElement.play().catch(e => console.error("Error al reproducir video:", e));
         }
