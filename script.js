@@ -25,42 +25,9 @@ window.addEventListener('scroll', () => {
     }
 });
 
-// --- Menú de Hamburguesa para móviles ---
-const navLinks = document.querySelector('.nav-links');
-const navToggle = document.createElement('div');
-navToggle.className = 'nav-toggle';
-navToggle.innerHTML = '&#9776;'; // Símbolo de hamburguesa
-navToggle.style.cssText = `
-    cursor: pointer;
-    font-size: 2rem;
-    color: var(--text);
-    display: none;
-`;
-document.querySelector('.navbar').appendChild(navToggle);
-
-navToggle.addEventListener('click', () => {
-    navLinks.classList.toggle('nav-active');
-});
-
-// Mostrar el icono de hamburguesa solo en pantallas pequeñas
-function checkNavDisplay() {
-    if (window.innerWidth <= 768) {
-        navToggle.style.display = 'block';
-        navLinks.style.display = 'none';
-    } else {
-        navToggle.style.display = 'none';
-        navLinks.style.display = 'flex';
-        navLinks.classList.remove('nav-active');
-    }
-}
-
-window.addEventListener('resize', checkNavDisplay);
-document.addEventListener('DOMContentLoaded', checkNavDisplay);
-
-
 /* ============================
     Carrusel: imágenes y videos
-   ============================ */
+    ============================ */
 const carousel = document.querySelector('.carousel');
 let items;
 let n;
@@ -163,7 +130,7 @@ if (carousel) {
 
 /* ============================
     Modal (Lightbox) con descripción
-   ============================ */
+    ============================ */
 function openProjectModal(initialIndex) {
     const existingModal = document.querySelector('.project-lightbox');
     if (existingModal) existingModal.remove();
@@ -258,25 +225,7 @@ function openProjectModal(initialIndex) {
 
 /* ============================
     Resaltado dinámico en navbar
-   ============================ */
-const sections = document.querySelectorAll("section");
-const navLinksAnchors = document.querySelectorAll(".nav-links a");
+    ============================ */
 
-const options = {
-    threshold: 0.5
-};
-
-let observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-            navLinksAnchors.forEach((link) => {
-                link.classList.remove("active");
-                if (link.getAttribute("href") === "#" + entry.target.id) {
-                    link.classList.add("active");
-                }
-            });
-        }
-    });
-}, options);
 
 sections.forEach((section) => observer.observe(section));

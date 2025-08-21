@@ -1,6 +1,6 @@
 /* ======================================
-   Reset y variables
-   ====================================== */
+    Reset y variables
+    ====================================== */
 * {
   margin: 0;
   padding: 0;
@@ -40,8 +40,8 @@ h2 {
 }
 
 /* ======================================
-   Intro Section
-   ====================================== */
+    Intro Section
+    ====================================== */
 .intro {
   display: flex;
   justify-content: center;
@@ -99,8 +99,8 @@ h2 {
 }
 
 /* ======================================
-   Navbar
-   ====================================== */
+    Navbar
+    ====================================== */
 .navbar {
   position: fixed;
   top: 0;
@@ -171,8 +171,8 @@ h2 {
 }
 
 /* ======================================
-   Hero Section
-   ====================================== */
+    Hero Section
+    ====================================== */
 .hero {
   min-height: 100vh;
   display: flex;
@@ -239,7 +239,7 @@ h2 {
   opacity: 0.9;
   max-width: 600px;
   text-align: justify;
-   padding: 0px 30px;
+    padding: 0px 30px;
 }
 
 .cta-button {
@@ -255,8 +255,8 @@ h2 {
 }
 
 /* ======================================
-   Skills Section
-   ====================================== */
+    Skills Section
+    ====================================== */
 .skills {
   padding: 5rem 5%;
   z-index: 10;
@@ -300,8 +300,8 @@ h2 {
 }
 
 /* ======================================
-   Section Divider
-   ====================================== */
+    Section Divider
+    ====================================== */
 .separator-container {
   padding: 20px 0;
   display: flex;
@@ -318,8 +318,8 @@ h2 {
 }
 
 /* ======================================
-   Projects Section - Carousel
-   ====================================== */
+    Projects Section - Carousel
+    ====================================== */
 .projects {
   padding: 5rem 5%;
 }
@@ -405,8 +405,8 @@ h2 {
 }
 
 /* ======================================
-   Contact Section
-   ====================================== */
+    Contact Section
+    ====================================== */
 .contact-section {
   padding: 60px 5%;
   background-color: var(--dark-bg);
@@ -454,8 +454,8 @@ strong {
 }
 
 /* ======================================
-   Lightbox (Modal) para proyectos
-   ====================================== */
+    Lightbox (Modal) para proyectos
+    ====================================== */
 .project-lightbox {
   position: fixed;
   top: 0;
@@ -551,6 +551,7 @@ strong {
   cursor: pointer;
   user-select: none;
   transition: color 0.3s ease, text-shadow 0.3s ease;
+  display: none;
   z-index: 10001;
 }
 
@@ -568,8 +569,8 @@ strong {
 }
 
 /* ======================================
-   Footer
-   ====================================== */
+    Footer
+    ====================================== */
 footer {
   padding: 20px;
   text-align: center;
@@ -578,8 +579,8 @@ footer {
 }
 
 /* ======================================
-   Media Queries
-   ====================================== */
+    Media Queries
+    ====================================== */
 @media (max-width: 1024px) {
   .hero {
     flex-direction: column;
@@ -615,10 +616,6 @@ footer {
 }
 
 @media (max-width: 768px) {
-  .nav-links {
-    display: none;
-  }
-
   .logo {
     font-size: 1.5rem;
     padding-left: 2rem;
@@ -632,7 +629,6 @@ footer {
     font-size: 1.5em;
   }
 
-  /* Los estilos que tenías dentro del media query para el carrusel los he sacado para que no se dupliquen. */
   .carousel-image.center,
   .carousel-video.center {
     transform: translate(-50%, -50%) translateZ(300px) scale(1.3);
@@ -647,63 +643,16 @@ footer {
   .carousel-video.right {
     transform: translate(calc(-50% + 250px), -50%) rotateY(-35deg) scale(1);
   }
-}
+  
+  /* Adaptación del carrusel para móviles */
+  .carousel-image.left,
+  .carousel-video.left,
+  .carousel-image.right,
+  .carousel-video.right {
+      transform: translate(calc(-50% - 150px), -50%) rotateY(25deg) scale(0.9);
+  }
 
-/* Estilos para el menú de hamburguesa */
-.nav-toggle {
-    display: none;
-}
-
-@media (max-width: 768px) {
-    .nav-toggle {
-        display: block !important;
-        position: absolute;
-        right: 5%;
-        top: 50%;
-        transform: translateY(-50%);
-    }
-
-    .nav-links {
-        position: fixed;
-        top: 0;
-        right: 0;
-        height: 100vh;
-        width: 70%;
-        background-color: var(--darker-bg);
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        transform: translateX(100%);
-        transition: transform 0.3s ease-in-out;
-        z-index: 999;
-        display: none; /* Empezar con el menú oculto */
-    }
-
-    .nav-links.nav-active {
-        transform: translateX(0);
-        display: flex;
-    }
-
-    .nav-links a {
-        font-size: 1.5rem;
-        padding: 1.5rem 0;
-        opacity: 0;
-        transition: opacity 0.5s ease 0.3s;
-    }
-
-    .nav-links.nav-active a {
-        opacity: 1;
-    }
-
-    .logo {
-        padding-left: 5%;
-    }
-    
-    /* Adaptación del carrusel para móviles */
-    .carousel-image.left,
-    .carousel-video.left,
-    .carousel-image.right,
-    .carousel-video.right {
-        transform: translate(calc(-50% - 150px), -50%) rotateY(25deg) scale(0.9);
-    }
+  .logo {
+    padding-left: 5%;
+  }
 }
