@@ -180,7 +180,6 @@ h2 {
   padding: 10% 5%;
   background: radial-gradient(
     circle at 74% 49%,
-    var(--accent-glow) 10%,
     transparent 30%
   );
 }
@@ -191,6 +190,9 @@ h2 {
   padding-top: 120px;
   padding-right: 3rem;
   z-index: 1;
+  display: flex;             /* Habilita flexbox en el contenedor */
+  flex-direction: column;    /* Apila los elementos verticalmente */
+  align-items: flex-start;   /* Alinea los hijos al inicio (izquierda) por defecto */
 }
 
 .hero-image {
@@ -205,9 +207,10 @@ h2 {
   border-radius: 50%;
   object-fit: cover;
   border: 3px solid var(--accent);
-  box-shadow: 0 0 50px var(--accent-glow), 0 0 100px var(--accent-glow);
+  box-shadow: 0 0 80px var(--accent-glow), 0 0 100px var(--accent-glow);
   animation: float 3s ease-in-out infinite;
   filter: grayscale(0.2) contrast(1.1);
+  margin-top: 130px;
 }
 
 @keyframes float {
@@ -226,6 +229,8 @@ h2 {
   background: linear-gradient(45deg, var(--accent) 30%, #ffffff 70%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  padding: 0px 150px;
+  margin-left: -120px;
 }
 
 .hero p {
@@ -233,6 +238,8 @@ h2 {
   margin-bottom: 2rem;
   opacity: 0.9;
   max-width: 600px;
+  text-align: justify;
+   padding: 0px 30px;
 }
 
 .cta-button {
@@ -243,8 +250,8 @@ h2 {
   border-radius: 8px;
   text-decoration: none;
   transition: all 0.3s ease;
-  position: relative;
   overflow: hidden;
+  margin-left: 30px; /* Ajusta este valor para moverlo los píxeles que quieras a la derecha */
 }
 
 /* ======================================
