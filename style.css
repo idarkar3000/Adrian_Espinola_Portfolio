@@ -177,7 +177,7 @@ h2 {
   min-height: 100vh;
   display: flex;
   align-items: center;
-  padding: 10% 5%;
+  padding: 0% 10%;
   background: radial-gradient(
     circle at 74% 49%,
     transparent 30%
@@ -551,7 +551,6 @@ strong {
   cursor: pointer;
   user-select: none;
   transition: color 0.3s ease, text-shadow 0.3s ease;
-  display: none;
   z-index: 10001;
 }
 
