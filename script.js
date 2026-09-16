@@ -1,266 +1,124 @@
-// --- Smooth scrolling
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) target.scrollIntoView({
-            behavior: 'smooth'
-        });
+document.addEventListener("DOMContentLoaded", () => {
+  // 1. Efecto mecanografía Typed.js
+  if (document.getElementById("typing")) {
+    new Typed("#typing", {
+      strings: [
+        "Arquitecturas Backend en .NET & C#",
+        "Microservicios y Patrón CQRS",
+        "APIs Escalables y de Alto Rendimiento",
+        "Sistemas Distribuidos y Asincronía",
+        "Software con Metodologías Ágiles (Scrum)",
+        "Aplicaciones Desktop Modernas en WPF"
+      ],
+      typeSpeed: 45,
+      backSpeed: 25,
+      backDelay: 1800,
+      loop: true,
     });
-});
+  }
 
-// --- Navbar scroll effect
-window.addEventListener('scroll', () => {
-    const navbar = document.querySelector('.navbar');
-    if (!navbar) return;
-    const scrollPosition = window.scrollY;
+  // 2. tsParticles (Efecto de red neuronal / nodos backend)
+  if (typeof tsParticles !== "undefined" && document.getElementById("particles-js")) {
+    tsParticles.load("particles-js", {
+      background: { color: "transparent" },
+      particles: {
+        number: { value: 50, density: { enable: true, area: 900 } },
+        color: { value: ["#8b5cf6", "#10b981"] },
+        shape: { type: "circle" },
+        opacity: { value: 0.3, random: true },
+        size: { value: 2.2, random: true },
+        move: {
+          enable: true,
+          speed: 1.2,
+          direction: "none",
+          outModes: { default: "out" },
+        },
+        links: {
+          enable: true,
+          distance: 130,
+          color: "#8b5cf6",
+          opacity: 0.18,
+          width: 1,
+        },
+      },
+      interactivity: {
+        events: {
+          onHover: { enable: true, mode: "grab" },
+          onClick: { enable: true, mode: "push" },
+        },
+        modes: {
+          grab: { distance: 120, links: { opacity: 0.45 } },
+          push: { quantity: 2 },
+        },
+      },
+    });
+  }
 
-    if (scrollPosition > 50) {
-        navbar.classList.add('scrolled');
+  // 3. Navbar dinámico y menú móvil
+  const navbar = document.querySelector(".navbar");
+  const hamburgerMenu = document.querySelector(".hamburger-menu");
+  const navLinks = document.querySelector(".nav-links");
+  const navLinksAnchors = document.querySelectorAll(".nav-links a");
+
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 40) {
+      navbar.classList.add("scrolled");
     } else {
-        navbar.classList.remove('scrolled');
+      navbar.classList.remove("scrolled");
     }
+  });
 
-    if (scrollPosition > 100) {
-        navbar.classList.add('visible');
-    } else {
-        navbar.classList.remove('visible');
-    }
-});
-
-// --- Navbar Hamburguer menu
-const hamburgerMenu = document.querySelector('.hamburger-menu');
-const navLinks = document.querySelector('.nav-links');
-const navLinksAnchor = document.querySelectorAll('.nav-links a');
-
-hamburgerMenu.addEventListener('click', () => {
-    navLinks.classList.toggle('active');
-});
-
-navLinksAnchor.forEach(link => {
-    link.addEventListener('click', () => {
-        navLinks.classList.remove('active');
+  if (hamburgerMenu) {
+    hamburgerMenu.addEventListener("click", () => {
+      navLinks.classList.toggle("active");
     });
-});
+  }
 
-/* ============================
-    Carrusel: imágenes y videos
-    ============================ */
-const carousel = document.querySelector('.carousel');
-let items;
-let n;
-let currentIndex = 0;
-
-if (carousel) {
-    items = Array.from(carousel.querySelectorAll('img, video'));
-    n = items.length;
-
-    function updateCarousel() {
-        if (n === 0) return;
-
-        items.forEach((el, idx) => {
-            el.classList.remove('center', 'left', 'right', 'hidden');
-            if (el.tagName === 'VIDEO') {
-                el.pause();
-                el.currentTime = 0;
-            }
-
-            if (idx === currentIndex) {
-                el.classList.add('center');
-                if (el.tagName === 'VIDEO') {
-                    el.play();
-                }
-            } else if (n > 1) {
-                const prev = (currentIndex - 1 + n) % n;
-                const next = (currentIndex + 1) % n;
-                if (idx === prev) {
-                    el.classList.add('left');
-                } else if (idx === next) {
-                    el.classList.add('right');
-                } else {
-                    el.classList.add('hidden');
-                }
-            } else {
-                el.classList.add('hidden');
-            }
-        });
-    }
-
-    // Navegación con clics en las imágenes
-    carousel.addEventListener('click', (e) => {
-        const clicked = e.target;
-        if (!['IMG', 'VIDEO'].includes(clicked.tagName)) return;
-        const idx = items.indexOf(clicked);
-        if (idx !== -1 && idx !== currentIndex) {
-            currentIndex = idx;
-            updateCarousel();
-        }
+  navLinksAnchors.forEach((link) => {
+    link.addEventListener("click", () => {
+      navLinks.classList.remove("active");
     });
+  });
 
-    // --- Navegación táctil (swipes) ---
-    let touchStartX = 0;
-    let touchEndX = 0;
+  // 4. Filtro interactivo de proyectos
+  const filterBtns = document.querySelectorAll(".filter-btn");
+  const projectBoxes = document.querySelectorAll(".project-box");
 
-    carousel.addEventListener('touchstart', (e) => {
-        touchStartX = e.changedTouches[0].screenX;
-    });
+  filterBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      filterBtns.forEach((b) => b.classList.remove("active"));
+      btn.classList.add("active");
 
-    carousel.addEventListener('touchend', (e) => {
-        touchEndX = e.changedTouches[0].screenX;
-        handleSwipeGesture();
-    });
+      const filterValue = btn.getAttribute("data-filter");
 
-    function handleSwipeGesture() {
-        const minSwipeDistance = 50;
-        if (touchEndX < touchStartX - minSwipeDistance) {
-            // Deslizamiento hacia la izquierda (avanzar)
-            currentIndex = (currentIndex + 1) % n;
-            updateCarousel();
-        } else if (touchEndX > touchStartX + minSwipeDistance) {
-            // Deslizamiento hacia la derecha (retroceder)
-            currentIndex = (currentIndex - 1 + n) % n;
-            updateCarousel();
-        }
-    }
-
-    // Doble-click para abrir modal con descripción
-    carousel.addEventListener('dblclick', (e) => {
-        const clicked = e.target;
-        if (!['IMG', 'VIDEO'].includes(clicked.tagName)) return;
-        const idx = items.indexOf(clicked);
-        openProjectModal(idx);
-    });
-
-    // Teclas flecha para navegar
-    window.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowLeft') {
-            currentIndex = (currentIndex - 1 + n) % n;
-            updateCarousel();
-        } else if (e.key === 'ArrowRight') {
-            currentIndex = (currentIndex + 1) % n;
-            updateCarousel();
-        }
-    });
-
-    // inicializa
-    updateCarousel();
-}
-
-/* ============================
-    Modal (Lightbox) con descripción
-    ============================ */
-function openProjectModal(initialIndex) {
-    const existingModal = document.querySelector('.project-lightbox');
-    if (existingModal) existingModal.remove();
-
-    let currentModalIndex = initialIndex;
-
-    const lightbox = document.createElement('div');
-    lightbox.className = 'project-lightbox';
-
-    const closeButton = document.createElement('span');
-    closeButton.className = 'close-button';
-    closeButton.innerHTML = '&times;';
-    closeButton.onclick = () => {
-        lightbox.remove();
-        document.body.style.overflow = '';
-    };
-
-    const prevButton = document.createElement('span');
-    prevButton.className = 'nav-button prev-button';
-    prevButton.innerHTML = '&#10094;';
-    prevButton.onclick = (e) => {
-        e.stopPropagation();
-        currentModalIndex = (currentModalIndex - 1 + n) % n;
-        updateModalContent();
-    };
-
-    const nextButton = document.createElement('span');
-    nextButton.className = 'nav-button next-button';
-    nextButton.innerHTML = '&#10095;';
-    nextButton.onclick = (e) => {
-        e.stopPropagation();
-        currentModalIndex = (currentModalIndex + 1) % n;
-        updateModalContent();
-    };
-
-    const contentContainer = document.createElement('div');
-    contentContainer.className = 'lightbox-content';
-    lightbox.appendChild(contentContainer);
-    lightbox.appendChild(closeButton);
-    lightbox.appendChild(prevButton);
-    lightbox.appendChild(nextButton);
-
-    function updateModalContent() {
-        const currentItem = items[currentModalIndex];
-        const src = currentItem.src || currentItem.currentSrc;
-        const description = currentItem.dataset.description || 'No hay descripción disponible para este proyecto.';
-        const type = currentItem.tagName;
-
-        contentContainer.innerHTML = '';
-
-        let mediaElement;
-        if (type === 'IMG') {
-            mediaElement = document.createElement('img');
-            mediaElement.src = src;
-        } else if (type === 'VIDEO') {
-            mediaElement = document.createElement('video');
-            mediaElement.src = src;
-            mediaElement.controls = true;
-            mediaElement.autoplay = true;
-            mediaElement.loop = true;
-        }
-
-        const descriptionBox = document.createElement('div');
-        descriptionBox.className = 'description-box';
-
-        const descriptionItems = description.split('•').filter(item => item.trim() !== '');
-        let descriptionContent = '';
-        if (descriptionItems.length > 0) {
-            descriptionContent += '<ul>';
-            descriptionItems.forEach(item => {
-                descriptionContent += `<li>${item.trim()}</li>`;
-            });
-            descriptionContent += '</ul>';
+      projectBoxes.forEach((box) => {
+        const category = box.getAttribute("data-category");
+        if (filterValue === "all" || category === filterValue) {
+          box.classList.remove("hide");
         } else {
-            descriptionContent += `<p>${description}</p>`;
+          box.classList.add("hide");
         }
-        descriptionBox.innerHTML = descriptionContent;
-
-        if (mediaElement) contentContainer.appendChild(mediaElement);
-        contentContainer.appendChild(descriptionBox);
-
-        if (mediaElement && mediaElement.tagName === 'VIDEO') {
-            mediaElement.play().catch(e => console.error("Error al reproducir video:", e));
-        }
-    }
-
-    updateModalContent();
-    document.body.appendChild(lightbox);
-    document.body.style.overflow = 'hidden';
-}
-
-/* ============================
-    Resaltado dinámico en navbar
-    ============================ */
-const sections = document.querySelectorAll("section");
-const navLinksAnchors = document.querySelectorAll(".nav-links a");
-
-const options = {
-    threshold: 0.5
-};
-
-let observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-            navLinksAnchors.forEach((link) => {
-                link.classList.remove("active");
-                if (link.getAttribute("href") === "#" + entry.target.id) {
-                    link.classList.add("active");
-                }
-            });
-        }
+      });
     });
-}, options);
+  });
 
-sections.forEach((section) => observer.observe(section));
+  // 5. Observer para destacar la sección activa en el menú
+  const sections = document.querySelectorAll("section, header");
+  const observerOptions = { threshold: 0.3 };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const id = entry.target.getAttribute("id");
+        navLinksAnchors.forEach((link) => {
+          link.classList.remove("active");
+          if (link.getAttribute("href") === `#${id}`) {
+            link.classList.add("active");
+          }
+        });
+      }
+    });
+  }, observerOptions);
+
+  sections.forEach((section) => observer.observe(section));
+});
