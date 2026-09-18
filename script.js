@@ -70,13 +70,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (hamburgerMenu) {
     hamburgerMenu.addEventListener("click", () => {
-      navLinks.classList.toggle("active");
+      const isOpen = navLinks.classList.toggle("active");
+      hamburgerMenu.setAttribute("aria-expanded", isOpen ? "true" : "false");
+      hamburgerMenu.setAttribute(
+        "aria-label",
+        isOpen ? "Cerrar menú de navegación" : "Abrir menú de navegación"
+      );
     });
   }
 
   navLinksAnchors.forEach((link) => {
     link.addEventListener("click", () => {
       navLinks.classList.remove("active");
+      if (hamburgerMenu) {
+        hamburgerMenu.setAttribute("aria-expanded", "false");
+        hamburgerMenu.setAttribute("aria-label", "Abrir menú de navegación");
+      }
     });
   });
 

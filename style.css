@@ -218,6 +218,9 @@ body {
 .hamburger-menu {
   display: none;
   cursor: pointer;
+  background: none;
+  border: none;
+  padding: 8px;
 }
 
 .hamburger-menu .bar {
@@ -1018,5 +1021,19 @@ footer {
 
   .contact-wrapper {
     padding: 28px;
+  }
+}
+
+/* ==========================================================================
+   ACCESIBILIDAD: RESPETA LA PREFERENCIA DE MOVIMIENTO REDUCIDO DEL USUARIO
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
   }
 }
