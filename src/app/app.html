@@ -1,0 +1,68 @@
+<div class="bg-mesh">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+  <div class="grid-overlay"></div>
+</div>
+
+<nav class="navbar" [class.scrolled]="scrolled()">
+  <a href="#intro" class="logo">
+    <span class="logo-symbol">&lt;/&gt;</span>
+    <span class="logo-text">Adrián Espínola Gumiel</span>
+  </a>
+  <div class="nav-right">
+    <div class="lang-switch" role="group" [attr.aria-label]="langService.t().nav.menuLabel">
+      <button
+        type="button"
+        [class.active]="langService.lang() === 'es'"
+        (click)="langService.setLang('es')"
+      >ES</button>
+      <button
+        type="button"
+        [class.active]="langService.lang() === 'en'"
+        (click)="langService.setLang('en')"
+      >EN</button>
+    </div>
+    <button
+      class="hamburger-menu"
+      type="button"
+      [attr.aria-label]="menuOpen() ? langService.t().nav.menuClose : langService.t().nav.menuOpen"
+      [attr.aria-expanded]="menuOpen()"
+      aria-controls="nav-links"
+      (click)="toggleMenu()"
+    >
+      <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
+    </button>
+  </div>
+  <ul class="nav-links" id="nav-links" [class.active]="menuOpen()">
+    <li><a href="#intro" [class.active]="activeSection() === 'intro'" (click)="closeMenu()">{{ langService.t().nav.home }}</a></li>
+    <li><a href="#about" [class.active]="activeSection() === 'about'" (click)="closeMenu()">{{ langService.t().nav.profile }}</a></li>
+    <li><a href="#skills" [class.active]="activeSection() === 'skills'" (click)="closeMenu()">{{ langService.t().nav.stack }}</a></li>
+    <li><a href="#experience" [class.active]="activeSection() === 'experience'" (click)="closeMenu()">{{ langService.t().nav.experience }}</a></li>
+    <li><a href="#projects" [class.active]="activeSection() === 'projects'" (click)="closeMenu()">{{ langService.t().nav.projects }}</a></li>
+    <li><a href="#education" [class.active]="activeSection() === 'education'" (click)="closeMenu()">{{ langService.t().nav.education }}</a></li>
+    <li>
+      <a href="#contact" class="nav-btn-contact" (click)="closeMenu()">{{ langService.t().nav.contact }}</a>
+    </li>
+  </ul>
+</nav>
+
+<app-hero />
+
+<main class="container">
+  <app-about />
+  <app-skills />
+  <app-experience />
+  <app-projects />
+  <app-education />
+  <app-contact />
+</main>
+
+<footer>
+  <div class="footer-content">
+    <span>{{ langService.t().footer.built }} <strong>{{ langService.t().footer.name }}</strong></span>
+    <span class="footer-stack">{{ langService.t().footer.stack }}</span>
+  </div>
+</footer>
