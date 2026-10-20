@@ -1,59 +1,61 @@
-# PortfolioSite
+# Adrián Espínola Gumiel — Portfolio
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.2.3.
+Portfolio personal de **Adrián Espínola Gumiel**, desarrollador backend especializado en **.NET / C#**. SPA construida con **Angular 22** (componentes standalone y signals), con estética editorial oscura, soporte **ES/EN**, easter eggs jugables y despliegue automático en GitHub Pages.
 
-## Development server
+## Stack
 
-To start a local development server, run:
+- **Angular 22** — standalone components, signals, `@if` / `@for` de control flow.
+- **TypeScript 5.x** y CSS modular (design system en `src/styles/`).
+- **Font Awesome** (CDN) y **Google Fonts** (Cinzel, Plus Jakarta Sans, Fira Code).
+- **GitHub Actions** → GitHub Pages (`baseHref: /Adrian_Espinola_Portfolio/`).
 
-```bash
-ng serve
-```
+## Requisitos
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+- Node.js 22+ (probado con Node 24)
+- npm 10+
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## Comandos
 
 ```bash
-ng generate --help
+npm ci              # instalar dependencias (CI reproducible)
+npx ng serve        # servidor de desarrollo en http://localhost:4200/
+npx ng build        # build de producción → dist/portfolio-site/browser
+npx prettier --write <archivos>   # formatear
 ```
 
-## Building
+> `ng` no está instalado globalmente en este entorno; usa `npx ng ...`.
 
-To build the project run:
+## Estructura
 
-```bash
-ng build
+```
+src/
+├── app/
+│   ├── core/
+│   │   ├── i18n/         # LanguageService + translations.ts (todos los textos ES/EN)
+│   │   ├── layout/       # navbar y footer
+│   │   └── services/     # SoundService (WebAudio) y EggsService (logros)
+│   ├── features/         # hero, about, skills, experience, projects, education, contact
+│   ├── app.ts / app.html # shell: reveal-on-scroll + capa de toasts
+│   └── app.config.ts
+├── styles/               # design system: tokens, base, layout, components, hollow
+├── public/               # CV, foto, favicon, robots.txt, sitemap.xml, 404.html
+└── index.html            # metadatos SEO/Open Graph y fuentes
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+## Internacionalización
 
-## Running unit tests
+Todo el texto vive en `src/app/core/i18n/translations.ts`. `LanguageService` expone `lang` (signal) y `t()` (computed), persiste la preferencia en `localStorage`, actualiza `<html lang>`, el `<title>` y los metadatos Open Graph al cambiar de idioma.
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+## Accesibilidad
 
-```bash
-ng test
-```
+- Navegación por teclado con foco visible (`:focus-visible`).
+- Modal de proyectos con `role="dialog"`, `aria-modal="true"`, `aria-labelledby`, focus-trap y restauración del foco al cerrar.
+- Respeta `prefers-reduced-motion` (desactiva typewriter, reveal y transiciones).
 
-## Running end-to-end tests
+## Despliegue
 
-For end-to-end (e2e) testing, run:
+El workflow `.github/workflows/deploy.yml` compila en cada push a `main` y publica en GitHub Pages. `public/404.html` redirige rutas profundas al SPA.
 
-```bash
-ng e2e
-```
+## Notas
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- Los `*.css` de los componentes de `features/` son intencionadamente mínimos: el estilo reside en el design system global (`src/styles/`).

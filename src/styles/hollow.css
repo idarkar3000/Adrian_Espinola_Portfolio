@@ -1,0 +1,15 @@
+/* ==========================================================================
+   MODO HOLLOW (easter egg Konami) — paleta espectral
+   ========================================================================== */
+body.hollow-mode {
+  --accent: #a9bcd0;
+  --accent-strong: #c3d4e4;
+  --accent-ink: #0c1118;
+  --accent-soft: rgba(169, 188, 208, 0.1);
+  --status: #8fb0c8;
+  --status-soft: rgba(143, 176, 200, 0.1);
+  --bg: #080b11;
+  --bg-deep: #06080d;
+  --bg-raised: #0e131d;
+  --bg-raised-2: #131a26;
+}

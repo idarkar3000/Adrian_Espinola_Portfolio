@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex" />
+    <title>Redirigiendo… | Adrián Espínola Gumiel</title>
+    <style>
+      html {
+        background: #070910;
+        color: #e9e3d5;
+        font-family:
+          system-ui,
+          -apple-system,
+          'Segoe UI',
+          sans-serif;
+      }
+      body {
+        min-height: 100vh;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 24px;
+      }
+      p {
+        color: #a29c8e;
+        font-size: 0.95rem;
+      }
+      a {
+        color: #d2a85e;
+      }
+    </style>
+    <script>
+      (function () {
+        var base = '/Adrian_Espinola_Portfolio/';
+        var path = location.pathname;
+        var target = base;
+        if (path.indexOf(base) === 0) {
+          var rest = path.slice(base.length);
+          if (rest) {
+            target = base + '#' + rest;
+          }
+        }
+        location.replace(target);
+      })();
+    </script>
+  </head>
+  <body>
+    <noscript>
+      <p>Esta página no existe. Vuelve al <a href="/Adrian_Espinola_Portfolio/">portfolio</a>.</p>
+    </noscript>
+  </body>
+</html>

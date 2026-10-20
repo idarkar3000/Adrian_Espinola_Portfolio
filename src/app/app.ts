@@ -1,53 +1,43 @@
-import { AfterViewInit, Component, HostListener, inject, signal } from '@angular/core';
-import { LanguageService } from './i18n/language';
-import { Hero } from './components/hero/hero';
-import { About } from './components/about/about';
-import { Skills } from './components/skills/skills';
-import { Experience } from './components/experience/experience';
-import { Projects } from './components/projects/projects';
-import { Education } from './components/education/education';
-import { Contact } from './components/contact/contact';
+import { AfterViewInit, Component, inject } from '@angular/core';
+import { LanguageService } from './core/i18n/language.service';
+import { SoundService } from './core/services/sound.service';
+import { EggsService } from './core/services/eggs.service';
+import { Navbar } from './core/layout/navbar/navbar';
+import { Footer } from './core/layout/footer/footer';
+import { Hero } from './features/hero/hero';
+import { About } from './features/about/about';
+import { Skills } from './features/skills/skills';
+import { Experience } from './features/experience/experience';
+import { Projects } from './features/projects/projects';
+import { Education } from './features/education/education';
+import { Contact } from './features/contact/contact';
 
 @Component({
-  imports: [Hero, About, Skills, Experience, Projects, Education, Contact],
+  imports: [Navbar, Footer, Hero, About, Skills, Experience, Projects, Education, Contact],
   selector: 'app-root',
   styleUrl: './app.css',
   templateUrl: './app.html',
 })
 export class App implements AfterViewInit {
   protected readonly langService = inject(LanguageService);
-  protected readonly scrolled = signal(false);
-  protected readonly menuOpen = signal(false);
-  protected readonly activeSection = signal('intro');
-
-  @HostListener('window:scroll')
-  onScroll(): void {
-    this.scrolled.set(window.scrollY > 40);
-  }
-
-  toggleMenu(): void {
-    this.menuOpen.update((open) => !open);
-  }
-
-  closeMenu(): void {
-    this.menuOpen.set(false);
-  }
+  protected readonly eggs = inject(EggsService);
+  private readonly sound = inject(SoundService);
 
   ngAfterViewInit(): void {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const id = entry.target.getAttribute('id');
-            if (id) {
-              this.activeSection.set(id);
-            }
-          }
-        });
-      },
-      { threshold: 0.3 }
-    );
+    this.sound.initDelegation();
+    this.eggs.start();
 
-    document.querySelectorAll('section, header').forEach((el) => observer.observe(el));
+    const revealObserver = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            revealObserver.unobserve(entry.target);
+          }
+        }
+      },
+      { threshold: 0.12 },
+    );
+    document.querySelectorAll('[data-reveal]').forEach((el) => revealObserver.observe(el));
   }
 }

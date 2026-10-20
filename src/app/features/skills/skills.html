@@ -1,0 +1,43 @@
+<section id="skills" class="skills-section">
+  <div class="section-head" data-reveal>
+    <span class="section-num">02</span>
+    <div class="section-head-text">
+      <div class="section-kicker">{{ langService.t().skills.badge }}</div>
+      <h2 class="section-title">{{ langService.t().skills.title }}</h2>
+    </div>
+    <span class="section-rule"></span>
+  </div>
+
+  <div class="service-sheet panel" data-reveal>
+    @for (card of cards(); track card.title) {
+      <article class="service-row">
+        <span class="service-index">{{ pad($index + 1) }}</span>
+
+        <div class="service-main">
+          <header class="service-head">
+            <h3 class="service-title">
+              <i [class]="card.icon"></i>
+              {{ card.title }}
+            </h3>
+            <div class="service-level">
+              <span class="service-bars">
+                @for (n of pips; track n) {
+                  <i class="level-bar" [class.on]="n <= card.level"></i>
+                }
+              </span>
+              <span class="service-level-label">{{ levels()[card.level - 1] }}</span>
+            </div>
+          </header>
+
+          <p class="service-desc">{{ card.desc }}</p>
+
+          <div class="pill-group">
+            @for (pill of card.pills; track pill) {
+              <span>{{ pill }}</span>
+            }
+          </div>
+        </div>
+      </article>
+    }
+  </div>
+</section>

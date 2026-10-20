@@ -1,0 +1,30 @@
+<section id="about" class="about-section">
+  <div class="section-head" data-reveal>
+    <span class="section-num">01</span>
+    <div class="section-head-text">
+      <div class="section-kicker">{{ langService.t().about.badge }}</div>
+      <h2 class="section-title">{{ langService.t().about.title }}</h2>
+    </div>
+    <span class="section-rule"></span>
+  </div>
+
+  <div class="about-grid" data-reveal>
+    <div class="about-text panel">
+      <p [innerHTML]="langService.t().about.p1"></p>
+      <p [innerHTML]="langService.t().about.p2"></p>
+      <div class="status-indicator">
+        <span class="pulse-ring"></span>
+        <span>{{ langService.t().about.status }}</span>
+      </div>
+    </div>
+
+    <div class="about-highlights panel">
+      @for (stat of langService.t().about.stats; track stat.number) {
+        <div class="stat-box">
+          <span class="stat-number">{{ stat.number }}</span>
+          <span class="stat-label">{{ stat.label }}</span>
+        </div>
+      }
+    </div>
+  </div>
+</section>

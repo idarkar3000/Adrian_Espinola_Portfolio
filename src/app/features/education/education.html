@@ -1,0 +1,33 @@
+<section id="education" class="education-section">
+  <div class="section-head" data-reveal>
+    <span class="section-num">05</span>
+    <div class="section-head-text">
+      <div class="section-kicker">{{ langService.t().education.badge }}</div>
+      <h2 class="section-title">{{ langService.t().education.title }}</h2>
+    </div>
+    <span class="section-rule"></span>
+  </div>
+
+  <div class="education-grid" data-reveal>
+    @for (entry of langService.t().education.entries; track entry.degree) {
+      <div class="education-card panel">
+        <div class="edu-icon">
+          <i [class]="entry.icon"></i>
+        </div>
+        <div class="edu-body">
+          <div class="edu-title-row">
+            <h3 class="edu-degree">{{ entry.degree }}</h3>
+            @if (entry.honors) {
+              <span class="edu-honors-badge">{{ entry.honors }}</span>
+            }
+          </div>
+          <div class="edu-meta">
+            <span class="edu-school">{{ entry.school }}</span>
+            <span class="edu-period">{{ entry.period }}</span>
+          </div>
+          <p class="edu-detail">{{ entry.detail }}</p>
+        </div>
+      </div>
+    }
+  </div>
+</section>

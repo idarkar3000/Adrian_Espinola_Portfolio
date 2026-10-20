@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://idarkar3000.github.io/Adrian_Espinola_Portfolio/sitemap.xml

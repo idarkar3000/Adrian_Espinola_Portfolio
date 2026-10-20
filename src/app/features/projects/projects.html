@@ -1,0 +1,140 @@
+<section id="projects" class="projects-section">
+  <div class="section-head" data-reveal>
+    <span class="section-num">04</span>
+    <div class="section-head-text">
+      <div class="section-kicker">{{ langService.t().projects.badge }}</div>
+      <h2 class="section-title">{{ langService.t().projects.title }}</h2>
+    </div>
+    <span class="section-rule"></span>
+  </div>
+
+  <div class="filter-wrapper" data-reveal>
+    @for (key of filterKeys; track key) {
+      <button
+        type="button"
+        class="filter-btn"
+        [class.active]="activeFilter() === key"
+        (click)="setFilter(key)"
+      >
+        {{ filterLabels[key]() }}
+      </button>
+    }
+  </div>
+
+  <div class="projects-container">
+    @for (project of filteredProjects(); track project.title) {
+      <article class="project-box panel">
+        <div class="box-window-header">
+          <a
+            [href]="project.url"
+            target="_blank"
+            rel="noopener"
+            class="github-action-link"
+            title="GitHub"
+            [attr.aria-label]="texts(project).ariaLabel"
+          >
+            <i class="fa-brands fa-github"></i>
+          </a>
+        </div>
+        <div class="box-content">
+          <h3 class="box-title">{{ project.title }}</h3>
+          <p class="box-subtitle">{{ texts(project).subtitle }}</p>
+          <p class="box-description">{{ texts(project).description }}</p>
+          <ul class="box-bullets">
+            @for (bullet of texts(project).bullets; track bullet) {
+              <li [innerHTML]="bullet"></li>
+            }
+          </ul>
+          <button type="button" class="detail-btn" (click)="openDetail(project)">
+            {{ langService.t().projects.viewDetail }}
+          </button>
+          <div class="box-tags">
+            @for (tag of project.tags; track tag) {
+              <span>{{ tag }}</span>
+            }
+          </div>
+        </div>
+      </article>
+    }
+  </div>
+</section>
+
+@if (selected(); as project) {
+  <div class="modal-backdrop" (click)="closeDetail()">
+    <div
+      #modalPanel
+      class="modal-panel panel"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modal-title"
+      (click)="$event.stopPropagation()"
+    >
+      <div class="modal-header">
+        <div>
+          <h3 class="modal-title" id="modal-title">{{ project.title }}</h3>
+          <p class="modal-subtitle">{{ texts(project).subtitle }}</p>
+        </div>
+        <button
+          type="button"
+          class="modal-close"
+          [attr.aria-label]="langService.t().projects.modal.close"
+          (click)="closeDetail()"
+        >
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <div class="modal-section">
+          <h4 class="modal-section-title">{{ langService.t().projects.modal.challenge }}</h4>
+          <p class="modal-text">{{ texts(project).detail.challenge }}</p>
+        </div>
+
+        <div class="modal-section">
+          <h4 class="modal-section-title">{{ langService.t().projects.modal.solution }}</h4>
+          <ul class="modal-list">
+            @for (item of texts(project).detail.solution; track item) {
+              <li [innerHTML]="item"></li>
+            }
+          </ul>
+        </div>
+
+        <div class="modal-section">
+          <h4 class="modal-section-title">{{ langService.t().projects.modal.result }}</h4>
+          <p class="modal-text">{{ texts(project).detail.result }}</p>
+        </div>
+
+        <div class="modal-section">
+          <h4 class="modal-section-title">{{ langService.t().projects.modal.stack }}</h4>
+          <div class="box-tags modal-tags">
+            @for (tag of project.tags; track tag) {
+              <span>{{ tag }}</span>
+            }
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        @if (project.demo) {
+          <a
+            [href]="project.demo"
+            target="_blank"
+            rel="noopener"
+            class="btn btn-ghost modal-repo-btn"
+          >
+            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            {{ langService.t().projects.modal.demo }}
+          </a>
+        }
+        <a
+          [href]="project.url"
+          target="_blank"
+          rel="noopener"
+          class="btn btn-primary modal-repo-btn"
+        >
+          <i class="fa-brands fa-github"></i> {{ langService.t().projects.modal.repo }}
+        </a>
+      </div>
+    </div>
+  </div>
+}

@@ -1,0 +1,16 @@
+<footer>
+  <button
+    class="footer-seal"
+    type="button"
+    (click)="eggs.onSealClick()"
+    [attr.aria-label]="langService.t().eggs.footer.title"
+  >
+    ◆
+  </button>
+  <div class="footer-content">
+    <span
+      >{{ langService.t().footer.built }} <strong>{{ langService.t().footer.name }}</strong></span
+    >
+    <span class="footer-stack">{{ langService.t().footer.stack }}</span>
+  </div>
+</footer>

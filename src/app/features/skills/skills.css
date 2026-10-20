@@ -1,0 +1,128 @@
+/* ==========================================================================
+   HOJA DE SERVICIO — competencias en formato editorial legible
+   ========================================================================== */
+.service-sheet {
+  padding: 8px 34px;
+}
+
+.service-row {
+  display: grid;
+  grid-template-columns: 84px 1fr;
+  gap: 24px;
+  padding: 30px 0;
+  border-top: 1px solid var(--line);
+  transition: background 0.25s ease;
+}
+
+.service-row:first-child {
+  border-top: none;
+}
+
+.service-row:hover {
+  background: rgba(233, 227, 213, 0.015);
+}
+
+.service-index {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--text-3);
+  padding-top: 4px;
+  user-select: none;
+}
+
+.service-row:hover .service-index {
+  color: var(--accent);
+}
+
+.service-main {
+  min-width: 0;
+}
+
+.service-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px 24px;
+  padding-right: 40px;
+  margin-bottom: 8px;
+}
+
+.service-title {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.service-title i {
+  font-size: 0.95rem;
+  color: var(--accent);
+}
+
+.service-level {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.service-bars {
+  display: inline-flex;
+  gap: 4px;
+}
+
+.level-bar {
+  display: inline-block;
+  width: 16px;
+  height: 4px;
+  background: transparent;
+  border: 1px solid var(--line-strong);
+}
+
+.level-bar.on {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.service-level-label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--text-2);
+  white-space: nowrap;
+}
+
+.service-desc {
+  font-size: 0.93rem;
+  color: var(--text-2);
+  margin-bottom: 16px;
+  max-width: 68ch;
+}
+
+@media (max-width: 768px) {
+  .service-sheet {
+    padding: 4px 22px;
+  }
+
+  .service-row {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    padding: 24px 0;
+  }
+
+  .service-index {
+    font-size: 1rem;
+    color: var(--text-3);
+  }
+
+  .service-head {
+    padding-right: 0;
+  }
+}

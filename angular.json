@@ -51,7 +51,11 @@
               }
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles/tokens.css",
+              "src/styles/base.css",
+              "src/styles/layout.css",
+              "src/styles/components.css",
+              "src/styles/hollow.css"
             ]
           },
           "configurations": {
