@@ -52,6 +52,7 @@ export interface Translations {
     typedStrings: string[];
     explore: string;
     cv: string;
+    cvFile: string;
     scrollLabel: string;
   };
   about: {
@@ -166,6 +167,7 @@ export const TRANSLATIONS: Record<Lang, Translations> = {
       ],
       explore: 'Explorar Proyectos',
       cv: 'Abrir CV',
+      cvFile: 'CV_Adrian_Espinola_Gumiel.pdf',
       scrollLabel: 'Bajar a perfil',
     },
     about: {
@@ -440,6 +442,7 @@ export const TRANSLATIONS: Record<Lang, Translations> = {
       ],
       explore: 'Explore Projects',
       cv: 'Open CV',
+      cvFile: 'CV_Adrian_Espinola_Gumiel_EN.pdf',
       scrollLabel: 'Scroll to about',
     },
     about: {
