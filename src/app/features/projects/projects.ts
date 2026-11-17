@@ -24,107 +24,122 @@ interface Project {
 const PROJECTS: Project[] = [
   {
     title: 'HomeHub',
-    tags: ['C#', 'ASP.NET Core', 'Minimal APIs', 'Dapper', 'PostgreSQL', 'Angular 22', 'xUnit'],
+    tags: [
+      'C#',
+      'ASP.NET Core',
+      'Minimal APIs',
+      'Dapper',
+      'PostgreSQL',
+      'SignalR',
+      'JWT',
+      'Angular 22',
+      'xUnit',
+    ],
     url: 'https://github.com/idarkar3000/HomeHub',
+    demo: 'https://home-hub-pearl.vercel.app',
     category: 'fullstack',
     es: {
-      subtitle: 'Aplicación fullstack de gestión del hogar',
+      subtitle: 'Aplicación full-stack de gestión del hogar',
       description:
-        'API REST en .NET con Minimal APIs, Dapper y PostgreSQL junto a una SPA en Angular 22 (standalone, signals) con navegación mobile-first, calendario con arrastrar y soltar y lista de la compra.',
+        'API REST en .NET 10 con Minimal APIs, Dapper y PostgreSQL, JWT con BCrypt y rate limiting, junto a una SPA en Angular 22 (standalone, signals) con actualización en tiempo real por SignalR.',
       bullets: [
-        'Backend por capas (<code>Endpoints / Repositories / Models</code>) con toggles <code>PATCH</code> y borrado en cascada.',
-        'Frontend con <strong>Angular Material</strong>, <strong>FullCalendar</strong> y estado reactivo mediante señales.',
-        'Tests de integración de la API con <strong>xUnit</strong> y <code>WebApplicationFactory</code> usando repositorios falsos.',
+        'Aislamiento por usuario en todas las consultas y <strong>rate limiting</strong> por IP en autenticación.',
+        'Tiempo real con <strong>SignalR</strong> por grupos de usuario; PWA instalable y modo oscuro.',
+        'Tests de integración con <strong>xUnit</strong> y <code>WebApplicationFactory</code>, con CI en <strong>GitHub Actions</strong>.',
       ],
       ariaLabel: 'Ver repositorio de HomeHub en GitHub',
       detail: {
         challenge:
-          'Unificar habitaciones, tareas con recurrencia y lista de la compra en una sola aplicación usable desde el móvil, con un backend que se pudiera probar de extremo a extremo sin tocar una base de datos real.',
+          'Unificar habitaciones, tareas con recurrencia, notas y lista de la compra en una sola aplicación usable desde el móvil, con un backend que se pudiera probar de extremo a extremo sin tocar una base de datos real.',
         solution: [
-          'API REST en .NET con <strong>Minimal APIs</strong>, <strong>Dapper</strong> y <strong>PostgreSQL</strong>, organizada por capas <code>Endpoints / Repositories / Models</code> con borrado en cascada y toggles <code>PATCH</code>.',
-          'SPA con <strong>Angular 22</strong> (componentes standalone y señales), <strong>Angular Material</strong> y navegación mobile-first con barra inferior estilo app nativa.',
-          'Calendario interactivo con <strong>FullCalendar</strong> y arrastrar y soltar para tareas de día completo o franja horaria, con recurrencia diaria, semanal y mensual.',
-          'Tests de integración de la API con <strong>xUnit</strong> y <code>WebApplicationFactory</code>, usando repositorios falsos para aislar la persistencia.',
+          'API REST en .NET 10 con <strong>Minimal APIs</strong>, <strong>Dapper</strong> y <strong>PostgreSQL</strong>, organizada en <code>Endpoints / Repositories / Models</code>.',
+          'Autenticación con <strong>JWT</strong> y contraseñas hasheadas con <strong>BCrypt</strong>, más <strong>rate limiting</strong> por IP en los endpoints de autenticación.',
+          'Cambios en tiempo real con <strong>SignalR</strong> y grupos por usuario: los avisos solo viajan a los dispositivos de la misma cuenta.',
+          'SPA con <strong>Angular 22</strong> (standalone y signals), <strong>Angular Material</strong> y calendario con arrastrar y soltar sobre <strong>FullCalendar</strong>.',
+          'Tests de integración con <strong>xUnit</strong> y <code>WebApplicationFactory</code>, sustituyendo los repositorios por fakes; CI en <strong>GitHub Actions</strong>.',
         ],
         result:
-          'API documentada con Swagger/OpenAPI y cubierta por tests de integración; SPA con navegación tipo app nativa y estado reactivo. Código disponible en GitHub.',
+          'API documentada con Swagger/OpenAPI y cubierta por tests de integración, con demo pública desplegada en Vercel.',
       },
     },
     en: {
-      subtitle: 'Fullstack home-management application',
+      subtitle: 'Full-stack home management application',
       description:
-        '.NET REST API with Minimal APIs, Dapper and PostgreSQL plus an Angular 22 SPA (standalone, signals) with mobile-first navigation, drag-and-drop calendar and shopping list.',
+        '.NET 10 REST API with Minimal APIs, Dapper and PostgreSQL, JWT with BCrypt and rate limiting, plus an Angular 22 SPA (standalone, signals) with real-time updates over SignalR.',
       bullets: [
-        'Layered backend (<code>Endpoints / Repositories / Models</code>) with <code>PATCH</code> toggles and cascading deletes.',
-        'Frontend with <strong>Angular Material</strong>, <strong>FullCalendar</strong> and reactive state via signals.',
-        'API integration tests with <strong>xUnit</strong> and <code>WebApplicationFactory</code> using fake repositories.',
+        'Per-user isolation on every query and IP <strong>rate limiting</strong> on authentication.',
+        'Real-time updates with <strong>SignalR</strong> per user group; installable PWA and dark mode.',
+        'Integration tests with <strong>xUnit</strong> and <code>WebApplicationFactory</code>, with CI on <strong>GitHub Actions</strong>.',
       ],
       ariaLabel: 'View HomeHub repository on GitHub',
       detail: {
         challenge:
-          'Unify rooms, recurring tasks and a shopping list into a single mobile-friendly application, with a backend that could be tested end-to-end without touching a real database.',
+          'Unify rooms, recurring tasks, notes and a shopping list into a single mobile-friendly application, with a backend that could be tested end-to-end without touching a real database.',
         solution: [
-          '.NET REST API with <strong>Minimal APIs</strong>, <strong>Dapper</strong> and <strong>PostgreSQL</strong>, layered as <code>Endpoints / Repositories / Models</code> with cascading deletes and <code>PATCH</code> toggles.',
-          'SPA built with <strong>Angular 22</strong> (standalone components and signals), <strong>Angular Material</strong> and mobile-first navigation with a native-app-style bottom bar.',
-          'Interactive <strong>FullCalendar</strong> with drag and drop for full-day or time-range tasks, with daily, weekly and monthly recurrence.',
-          'API integration tests with <strong>xUnit</strong> and <code>WebApplicationFactory</code>, using fake repositories to isolate persistence.',
+          '.NET 10 REST API with <strong>Minimal APIs</strong>, <strong>Dapper</strong> and <strong>PostgreSQL</strong>, layered as <code>Endpoints / Repositories / Models</code>.',
+          'Authentication with <strong>JWT</strong> and passwords hashed with <strong>BCrypt</strong>, plus per-IP <strong>rate limiting</strong> on the authentication endpoints.',
+          'Real-time changes with <strong>SignalR</strong> and per-user groups: notifications only travel to devices on the same account.',
+          'SPA built with <strong>Angular 22</strong> (standalone components and signals), <strong>Angular Material</strong> and a drag-and-drop calendar on <strong>FullCalendar</strong>.',
+          'Integration tests with <strong>xUnit</strong> and <code>WebApplicationFactory</code>, swapping repositories for fakes; CI on <strong>GitHub Actions</strong>.',
         ],
         result:
-          'API documented with Swagger/OpenAPI and covered by integration tests; SPA with native-app-style navigation and reactive state. Code available on GitHub.',
+          'API documented with Swagger/OpenAPI and covered by integration tests, with a public demo deployed on Vercel.',
       },
     },
   },
   {
     title: 'RadarChollos',
-    tags: ['C#', '.NET 9', 'EF Core', 'SQLite', 'xUnit', 'Docker', 'Telegram.Bot'],
+    tags: ['C#', '.NET 9', 'EF Core', 'SQLite', 'xUnit', 'Docker', 'Telegram.Bot', 'Serilog'],
     url: 'https://github.com/idarkar3000/RadarChollos',
     category: 'backend',
     es: {
-      subtitle: 'Servicio de rastreo automatizado de ofertas y bot de Telegram',
+      subtitle: 'Bot de Telegram que vigila ofertas y avisa con alertas por patrón',
       description:
-        'Servicio backend continuo en .NET 9 que rastrea publicaciones de Chollometro, descarta duplicados, normaliza comercios y evalúa reglas de filtrado dinámicas almacenadas en SQLite con EF Core, enviando alertas inmediatas por Telegram.',
+        'Worker en .NET 9 que consulta el feed de Chollometro cada minuto, descarta ofertas caducadas o repetidas y evalúa alertas con sintaxis propia —términos, precio máximo y tienda—, avisando por Telegram con un enlace directo a la tienda.',
       bullets: [
-        'Ejecución en segundo plano con <code>IHostedService</code> y Minimal APIs para Health Checks cloud.',
-        'Respuesta a comandos de Telegram en <strong>menos de 1 segundo</strong>.',
-        'Suite completa de tests unitarios automatizados con <strong>xUnit</strong> y <strong>FluentAssertions</strong>.',
-        'Contenerización multi-stage en <strong>Docker</strong> y despliegue en Render monitorizado con UptimeRobot.',
+        'Sintaxis de alertas escrita en el chat: <code>+</code> obliga, <code>|</code> alterna, <code>-</code> excluye, <code>&lt;</code> limita precio y <code>@</code> filtra tienda.',
+        'Índice único sobre el enlace en <strong>SQLite</strong>, no en memoria: sobrevive a reinicios y despliegues.',
+        'Resuelve la redirección de Chollometro para enlazar a la tienda real, no al salto intermedio.',
+        'Tests con <strong>xUnit</strong>, logging con <strong>Serilog</strong> y despliegue con <strong>Docker</strong> multi-stage.',
       ],
       ariaLabel: 'Ver repositorio de RadarChollos en GitHub',
       detail: {
         challenge:
-          'Seguir ofertas manualmente consume horas y se pierden chollos; se necesitaba un servicio que trabajase solo en segundo plano y avisase al momento, sin reiniciar para cambiar filtros.',
+          'Perseguir una oferta concreta a mano es agotador: entras, miras, no está, vuelves en dos horas. El bot tenía que hacer ese trabajo solo y avisar únicamente cuando hubiera algo que mereciera la pena.',
         solution: [
-          'Servicio permanente en <strong>C# / .NET 9</strong> con <code>IHostedService</code> y rastreo concurrente que descarta duplicados y normaliza comercios.',
-          'Persistencia relacional con <strong>SQLite</strong> y <strong>Entity Framework Core</strong>, con índices anti-duplicados y reciclaje de identificadores.',
-          'Comandos de Telegram (<code>/add</code>, <code>/list</code>, <code>/delete</code>) en caliente y restringidos a un usuario verificado, con alertas en menos de 1 s.',
-          'Despliegue en <strong>Render</strong> con <strong>Docker</strong> multi-stage y keep-alive de <strong>UptimeRobot</strong>; suite de tests con <strong>xUnit</strong> y <strong>FluentAssertions</strong>.',
+          'Worker en <strong>C# / .NET 9</strong> que consulta el RSS de Chollometro cada minuto y descarta las ofertas caducadas, agotadas o finalizadas antes de notificar.',
+          'Alertas guardadas en <strong>SQLite</strong> con <strong>Entity Framework Core</strong> y editables en caliente desde el chat con <code>/add</code>, <code>/list</code> y <code>/delete</code>.',
+          'Índice único sobre el enlace en la base de datos, en lugar de un <code>HashSet</code> en memoria que se perdería en cada reinicio.',
+          'Resolución de la redirección de Chollometro con un <code>HttpClient</code> que no sigue redirecciones, para quedarse con la URL real de la tienda.',
+          'Tests con <strong>xUnit</strong> y <strong>FluentAssertions</strong>; <strong>Docker</strong> multi-stage y logging con <strong>Serilog</strong> a consola y fichero con rotación diaria.',
         ],
         result:
-          'Alertas en menos de 1 segundo y gestión de filtros en caliente sin reiniciar el servicio. Desplegado y supervisado 24/7.',
+          'Aviso en menos de un minuto con enlace directo a la tienda y alertas gestionables desde el chat sin reiniciar el servicio. El despliegue está parado ahora mismo: se apagó para no consumir la cuota gratuita.',
       },
     },
     en: {
-      subtitle: 'Automated deal-tracking service and Telegram bot',
+      subtitle: 'Telegram bot that watches deals and alerts on saved patterns',
       description:
-        'Continuous .NET 9 backend service that tracks Chollometro posts, discards duplicates, normalizes stores and evaluates dynamic filtering rules stored in SQLite with EF Core, sending instant Telegram alerts.',
+        '.NET 9 worker that polls the Chollometro feed every minute, drops expired or duplicate deals and evaluates alerts written in its own syntax — terms, maximum price and store — then notifies through Telegram with a direct link to the store.',
       bullets: [
-        'Background execution with <code>IHostedService</code> and Minimal APIs for cloud Health Checks.',
-        'Telegram command responses in <strong>under 1 second</strong>.',
-        'Full unit-test suite with <strong>xUnit</strong> and <strong>FluentAssertions</strong>.',
-        'Multi-stage <strong>Docker</strong> containerization and Render deployment monitored with UptimeRobot.',
+        'Alert syntax written straight in the chat: <code>+</code> requires, <code>|</code> alternates, <code>-</code> excludes, <code>&lt;</code> caps price and <code>@</code> filters store.',
+        'Unique index on the link in <strong>SQLite</strong>, not in memory: it survives restarts and deployments.',
+        'Resolves the Chollometro redirect so the alert links to the real store, not to the intermediate hop.',
+        'Tests with <strong>xUnit</strong>, logging with <strong>Serilog</strong> and multi-stage <strong>Docker</strong> deployment.',
       ],
       ariaLabel: 'View RadarChollos repository on GitHub',
       detail: {
         challenge:
-          'Tracking deals by hand takes hours and good ones slip away; the service had to work unattended in the background and alert instantly, without restarts to change filters.',
+          'Tracking a specific deal by hand is exhausting: you go in, look, it is not there, you come back two hours later. The bot had to do that work on its own and only interrupt when something was actually worth it.',
         solution: [
-          'Permanent <strong>C# / .NET 9</strong> service with <code>IHostedService</code> and concurrent crawling that discards duplicates and normalizes stores.',
-          'Relational storage with <strong>SQLite</strong> and <strong>Entity Framework Core</strong>, with anti-duplicate indexes and ID recycling.',
-          'Hot-reloadable Telegram commands (<code>/add</code>, <code>/list</code>, <code>/delete</code>) restricted to a verified user, with alerts in under 1 s.',
-          '<strong>Render</strong> deployment with multi-stage <strong>Docker</strong> and <strong>UptimeRobot</strong> keep-alive; test suite with <strong>xUnit</strong> and <strong>FluentAssertions</strong>.',
+          '<strong>C# / .NET 9</strong> worker that polls the Chollometro RSS feed every minute and drops expired, sold-out or finished deals before notifying.',
+          'Alerts stored in <strong>SQLite</strong> with <strong>Entity Framework Core</strong> and editable on the fly from the chat with <code>/add</code>, <code>/list</code> and <code>/delete</code>.',
+          'Unique index on the link in the database instead of an in-memory <code>HashSet</code> that would lose state on every restart.',
+          'Chollometro redirect resolution using an <code>HttpClient</code> that does not follow redirects, keeping the real store URL.',
+          'Tests with <strong>xUnit</strong> and <strong>FluentAssertions</strong>; multi-stage <strong>Docker</strong> and <strong>Serilog</strong> logging to console and rotating file.',
         ],
         result:
-          'Alerts in under one second and hot filter management with no service restarts. Deployed and monitored 24/7.',
+          'Alert in under a minute with a direct link to the store, and alerts managed from the chat without restarting the service. The deployment is stopped right now: it was shut down to avoid burning the free tier quota.',
       },
     },
   },
@@ -184,53 +199,55 @@ const PROJECTS: Project[] = [
   },
   {
     title: 'Pdf_Signer',
-    tags: ['C#', 'WPF (.NET 10)', 'MVVM', 'PdfPig', 'PdfiumViewer', 'XAML'],
+    tags: ['C#', 'WPF (.NET 10)', 'XAML', 'RelayCommand', 'PdfPig', 'PdfiumViewer'],
     url: 'https://github.com/idarkar3000/Pdf_Signer',
     category: 'desktop',
     es: {
-      subtitle: 'Visor PDF y estampado interactivo vectorial de firmas manuscritas',
+      subtitle: 'Visor PDF y estampado vectorial de firmas manuscritas',
       description:
-        'Aplicación de escritorio desarrollada en C# y WPF (.NET 10) para previsualizar PDFs y estampar firmas de manera fluida, precisa y con fidelidad vectorial.',
+        'Aplicación de escritorio en C# y WPF sobre .NET 10 para previsualizar PDFs y estampar firmas manuscritas de forma vectorial, sin imprimir ni escanear nada.',
       bullets: [
-        'Canvas interactivo con grosor ajustable, borrado por trazos y soporte Drag & Drop.',
-        'Estampado dinámico con posicionamiento en tiempo real e historial Deshacer/Rehacer (Ctrl+Z / Ctrl+Y).',
-        'Integración de PdfiumViewer para renderizado ágil y PdfPig para manipulación y exportación sin pérdida.',
+        'Lienzo de firma con grosor ajustable y borrado por trazos.',
+        'Firma colocable y reescalable sobre el documento, con Deshacer/Rehacer (Ctrl+Z / Ctrl+Y).',
+        'PdfiumViewer para el renderizado y PdfPig para el estampado vectorial sin pérdida.',
       ],
       ariaLabel: 'Ver repositorio de Pdf_Signer en GitHub',
       detail: {
         challenge:
           'Firmar un PDF exigía imprimir, escanear o recurrir a suites pesadas de pago; se buscaba un flujo fluido en el escritorio con fidelidad vectorial.',
         solution: [
-          'Aplicación de escritorio en <strong>C# / WPF / .NET 10</strong> bajo patrón <strong>MVVM</strong> y <strong>XAML</strong>.',
-          'Visor PDF interactivo con <strong>PdfiumViewer</strong> y lienzo de firma con trazo libre, borrado por trazos y grosor personalizable.',
-          'Motor de comandos <strong>Undo/Redo</strong> (Ctrl+Z / Ctrl+Y) para el dibujo y el posicionamiento, con <strong>Drag & Drop</strong> de documentos.',
-          'Exportación vectorial de la firma estamada con <strong>PdfPig</strong> optimizando buffers de memoria.',
+          'Aplicación de escritorio en <strong>C# / WPF / .NET 10</strong> con vistas separadas y comandos propios mediante <code>RelayCommand</code> (<code>ICommand</code>).',
+          'Visor PDF con <strong>PdfiumViewer</strong>: zoom, navegación por páginas y salto a una página concreta.',
+          'Lienzo de firma con trazo libre, borrado por trazos y grosor configurable, más apertura de documentos arrastrando el PDF sobre la ventana.',
+          'Motor de <strong>Deshacer/Rehacer</strong> (Ctrl+Z / Ctrl+Y) tanto para el dibujo de la firma como para su posición sobre el documento.',
+          'Exportación vectorial con <strong>PdfPig</strong>, conservando la transparencia de la firma y la integridad del PDF.',
         ],
         result:
-          'Estampado preciso sin pérdida de fidelidad, con memoria optimizada durante la exportación y un flujo de una sola ventana.',
+          'Estampado vectorial sin pérdida de fidelidad y un flujo de una sola ventana. No es una firma digital criptográfica: estampa una firma manuscrita, no firma con certificado.',
       },
     },
     en: {
-      subtitle: 'PDF viewer with interactive vector stamping of handwritten signatures',
+      subtitle: 'PDF viewer with vector stamping of handwritten signatures',
       description:
-        'Desktop application built in C# and WPF (.NET 10) to preview PDFs and stamp signatures smoothly, precisely and with vector fidelity.',
+        'Desktop application built in C# and WPF on .NET 10 to preview PDFs and stamp handwritten signatures as vectors, without printing or scanning anything.',
       bullets: [
-        'Interactive canvas with adjustable stroke width, per-stroke erasing and Drag & Drop support.',
-        'Dynamic stamping with real-time positioning and Undo/Redo history (Ctrl+Z / Ctrl+Y).',
-        'PdfiumViewer for fast rendering and PdfPig for lossless manipulation and export.',
+        'Signature canvas with adjustable stroke width and per-stroke erasing.',
+        'Signature can be moved and rescaled over the document, with Undo/Redo (Ctrl+Z / Ctrl+Y).',
+        'PdfiumViewer for rendering and PdfPig for lossless vector stamping.',
       ],
       ariaLabel: 'View Pdf_Signer repository on GitHub',
       detail: {
         challenge:
           'Signing a PDF meant printing, scanning or resorting to heavy paid suites; the goal was a smooth desktop flow with vector fidelity.',
         solution: [
-          'Desktop app in <strong>C# / WPF / .NET 10</strong> following the <strong>MVVM</strong> pattern with <strong>XAML</strong>.',
-          'Interactive PDF viewer with <strong>PdfiumViewer</strong> and a signature canvas with freehand drawing, per-stroke erasing and adjustable width.',
-          '<strong>Undo/Redo</strong> command engine (Ctrl+Z / Ctrl+Y) for drawing and positioning, with document <strong>Drag & Drop</strong>.',
-          'Vector export of the stamped signature with <strong>PdfPig</strong>, optimizing memory buffers.',
+          'Desktop app in <strong>C# / WPF / .NET 10</strong> with separated views and custom commands through <code>RelayCommand</code> (<code>ICommand</code>).',
+          'PDF viewer built on <strong>PdfiumViewer</strong>: zoom, page navigation and jump to a specific page.',
+          'Signature canvas with freehand drawing, per-stroke erasing and configurable width, plus document opening by dragging a PDF onto the window.',
+          '<strong>Undo/Redo</strong> engine (Ctrl+Z / Ctrl+Y) for both the signature drawing and its position on the document.',
+          'Vector export with <strong>PdfPig</strong>, preserving signature transparency and PDF integrity.',
         ],
         result:
-          'Precise stamping with no fidelity loss, memory-optimized export and a single-window flow.',
+          'Vector stamping with no fidelity loss and a single-window flow. It is not a cryptographic digital signature: it stamps a handwritten signature, it does not sign with a certificate.',
       },
     },
   },

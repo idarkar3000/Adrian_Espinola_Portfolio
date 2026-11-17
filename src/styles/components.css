@@ -375,10 +375,11 @@
 
 .stat-number {
   font-family: var(--font-mono);
-  font-size: 1.4rem;
+  font-size: clamp(1.05rem, 1.5vw, 1.4rem);
   font-weight: 700;
   color: var(--accent);
   margin-bottom: 4px;
+  white-space: nowrap;
 }
 
 .stat-label {
@@ -415,6 +416,12 @@
 /* ==========================================================================
    EXPERIENCIA (ventana de terminal)
    ========================================================================== */
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
 .timeline-block {
   overflow: hidden;
 }
@@ -485,6 +492,7 @@
   padding: 4px 12px;
   border-radius: var(--radius-sm);
   color: var(--text-2);
+  white-space: nowrap;
 }
 
 .job-intro {

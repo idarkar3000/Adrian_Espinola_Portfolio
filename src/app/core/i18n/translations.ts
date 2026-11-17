@@ -20,6 +20,16 @@ export interface ProjectTexts {
   };
 }
 
+export interface JobTexts {
+  terminal: string;
+  role: string;
+  company: string;
+  period: string;
+  intro: string;
+  achievements: { title: string; text: string }[];
+  tags: string[];
+}
+
 export interface EggText {
   title: string;
   desc: string;
@@ -72,12 +82,7 @@ export interface Translations {
   experience: {
     badge: string;
     title: string;
-    terminal: string;
-    role: string;
-    company: string;
-    period: string;
-    intro: string;
-    achievements: { title: string; text: string }[];
+    jobs: JobTexts[];
   };
   projects: {
     badge: string;
@@ -159,7 +164,7 @@ export const TRANSLATIONS: Record<Lang, Translations> = {
       building: 'Ahora mismo estoy construyendo:',
       typedStrings: [
         'APIs en .NET con tests que las sostienen',
-        'microservicios con CQRS y arquitectura por dominios',
+        'automatizaciones que trabajan mientras duermo',
         'interfaces en Angular hechas con cuidado',
         'consultas SQL que no hacen esperar al usuario',
         'aprendiendo algo nuevo cada semana',
@@ -173,19 +178,25 @@ export const TRANSLATIONS: Record<Lang, Translations> = {
     about: {
       badge: '// 01. PERFIL PROFESIONAL',
       title: 'Backend con base de ingeniería',
-      p1: 'Graduado en <strong>Ingeniería en Diseño y Desarrollo de Videojuegos</strong> (URJC), con formación fuerte en <strong>estructuras de datos, algoritmos y bases de datos</strong>, y <strong>Técnico Superior en Animación 3D, Juegos y Entornos Interactivos</strong> (IFP), con <strong>Premio a la Excelencia Académica</strong>. Con los años mi foco se ha movido al <strong>backend</strong>: APIs, bases de datos y arquitectura, donde el software se pone serio.',
-      p2: 'En <strong>EPAM Neoris</strong> reescribí un legacy de PowerBuilder como microservicios con <strong>CQRS</strong>, <strong>Vertical Slice</strong> y <strong>Dapper</strong>, y seguí por el lado del cliente con <strong>Angular</strong> y escritorio en <strong>WPF</strong> (.NET 10). También integro <strong>IA</strong> en el día a día: generación de tests, refactorizaciones y tareas repetitivas.',
+      p1: '<strong>Grado en Diseño y Desarrollo de Videojuegos</strong> (rama de Ingeniería, URJC), con formación fuerte en <strong>estructuras de datos, algoritmos y bases de datos</strong>, y <strong>Técnico Superior en Animación 3D, Juegos y Entornos Interactivos</strong> (iFP, 9,33/10 y Premio a la Excelencia Académica). Con los años mi foco se ha movido al <strong>backend</strong>: APIs, bases de datos y arquitectura, donde el software se pone serio.',
+      p2: 'En <strong>EPAM NEORIS</strong> pasé cuatro meses de prácticas en un equipo backend que estaba migrando una plataforma legacy de PowerBuilder a microservicios con <strong>CQRS</strong>, <strong>Vertical Slice</strong> y <strong>Dapper</strong>: implementé los endpoints y handlers que se me asignaron y bajé las consultas sobre Informix de más de 60 segundos a menos de 10. Antes estuve catorce meses en <strong>Three Golden Monkeys</strong>, donde entré con las prácticas de FP y seguí en el mismo proyecto de tienda online. También integro <strong>IA</strong> en el día a día: tests, refactorizaciones y tareas repetitivas.',
       status: 'Disponible para posiciones de Software & Backend Developer',
       stats: [
         {
-          number: 'EPAM NEORIS',
-          label: 'Legacy de PowerBuilder migrado a microservicios en producción (prácticas)',
+          number: '60 s → 10 s',
+          label: 'Consultas sobre Informix en alta concurrencia (EPAM NEORIS)',
         },
-        { number: 'CQRS', label: 'Commands y Queries separados por slice y caso de uso' },
-        { number: 'URJC', label: 'Ingeniería en Diseño y Desarrollo de Videojuegos' },
+        {
+          number: '18 meses',
+          label: 'De experiencia: 14 en Three Golden Monkeys y 4 en EPAM NEORIS',
+        },
+        {
+          number: 'URJC',
+          label: 'Grado en Diseño y Desarrollo de Videojuegos (Ingeniería)',
+        },
         {
           number: 'CI/CD',
-          label: 'Docker multi-stage, pipelines de Azure DevOps y tests unitarios',
+          label: 'GitHub Actions y Docker multi-stage; Azure DevOps y Pull Requests en equipo',
         },
       ],
     },
@@ -247,15 +258,14 @@ export const TRANSLATIONS: Record<Lang, Translations> = {
           icon: 'fa-solid fa-cubes',
           title: 'Desktop & Arquitectura',
           level: 4,
-          desc: 'Interfaces reactivas con MVVM y sistemas modulares fáciles de mantener.',
+          desc: 'Aplicaciones WPF en .NET con vistas separadas y comandos propios.',
           pills: [
             'WPF (.NET 10)',
             'XAML',
-            'MVVM',
+            'RelayCommand (ICommand)',
             'PdfPig',
             'PdfiumViewer',
             'Inyección de Dep. (IoC)',
-            'Clean Architecture',
             'SOLID',
           ],
         },
@@ -293,32 +303,72 @@ export const TRANSLATIONS: Record<Lang, Translations> = {
     experience: {
       badge: '// 03. TRAYECTORIA LABORAL',
       title: 'Experiencia Profesional',
-      terminal: 'epam-neoris / backend-microservices',
-      role: 'Desarrollador Backend .NET — Prácticas universitarias',
-      company: 'EPAM Neoris',
-      period: 'Marzo 2026 – Junio 2026',
-      intro:
-        'Prácticas universitarias en el equipo backend: migración de un legacy de PowerBuilder a microservicios en C# / .NET, con CQRS, arquitectura por dominios y persistencia optimizada sobre SQL Server e IBM Informix.',
-      achievements: [
+      jobs: [
         {
-          title: 'Migración de legacy a microservicios:',
-          text: 'la plataforma cliente-servidor en PowerBuilder que nadie quería tocar, reescrita en C# / .NET con ASP.NET Core.',
+          terminal: 'epam-neoris / backend-microservices',
+          role: 'Desarrollador Backend .NET — Prácticas',
+          company: 'EPAM NEORIS',
+          period: 'Marzo 2026 – Junio 2026 · 4 meses',
+          intro:
+            'Prácticas en un equipo backend que estaba migrando una plataforma legacy de PowerBuilder a microservicios en C# / .NET con CQRS y Vertical Slice. La estructura ya estaba definida por el equipo; yo implementaba dentro de ella.',
+          achievements: [
+            {
+              title: 'Rendimiento en Informix:',
+              text: 'bajé las consultas de más de 60 segundos a menos de 10 en un entorno de alta concurrencia.',
+            },
+            {
+              title: 'Endpoints y handlers:',
+              text: 'implementé los que se me asignaron con sus handlers de lectura y escritura (Commands/Queries).',
+            },
+            {
+              title: 'Esquemas y DTOs:',
+              text: 'configuré los esquemas de cada contexto de dominio y centralicé el mapeo con Mapster.',
+            },
+            {
+              title: 'Frontend y calidad:',
+              text: 'ajusté la capa de servicios en Angular para consumir las nuevas APIs REST, con validación en FluentValidation, seguridad JWT y Swagger.',
+            },
+            {
+              title: 'Día a día:',
+              text: 'Scrum, Azure DevOps, Git con Pull Requests e IA para tests y refactorizaciones.',
+            },
+          ],
+          tags: [
+            'C#',
+            '.NET',
+            'ASP.NET Core',
+            'CQRS',
+            'Vertical Slice',
+            'Dapper',
+            'Informix',
+            'SQL Server',
+            'Mapster',
+            'Angular',
+            'Azure DevOps',
+          ],
         },
         {
-          title: 'CQRS y Vertical Slice:',
-          text: 'Commands y Queries separados por slice, con handlers, contratos e inyección de dependencias por microservicio. Nada de carpetas "utils" infinitas.',
-        },
-        {
-          title: 'Persistencia y rendimiento:',
-          text: 'SQL directo con Dapper sobre SQL Server e IBM Informix; timeouts de más de 60 s bajados a menos de 10 s con estructuras indexadas en memoria.',
-        },
-        {
-          title: 'Integración Frontend & Calidad:',
-          text: 'DTOs estandarizados con MapsterConfig, consumo tolerante a fallos de las APIs en Angular, validación con FluentValidation, seguridad JWT, tests unitarios por slice y documentación con Swagger/OpenAPI.',
-        },
-        {
-          title: 'DevOps y productividad:',
-          text: 'Scrum diario en Azure DevOps, Git con Pull Requests e IA donde suma de verdad: generar pruebas, refactorizar y depurar.',
+          terminal: 'three-golden-monkeys / tienda-online',
+          role: 'Desarrollador Backend .NET',
+          company: 'Three Golden Monkeys',
+          period: 'Marzo 2021 – Abril 2022 · 14 meses',
+          intro:
+            'Tienda online para un cliente de la empresa. Entré con las prácticas de FP y continué diez meses más en el mismo proyecto.',
+          achievements: [
+            {
+              title: 'Endpoints y lógica de negocio:',
+              text: 'desarrollé en C# / .NET el flujo de la tienda.',
+            },
+            {
+              title: 'Esquema y consultas:',
+              text: 'modelé el esquema relacional y escribí las consultas con Dapper sobre SQL Server.',
+            },
+            {
+              title: 'Contratos y pruebas:',
+              text: 'documenté la API con Swagger y escribí pruebas unitarias sobre la lógica del servicio.',
+            },
+          ],
+          tags: ['C#', '.NET', 'ASP.NET Core', 'SQL Server', 'Dapper', 'Swagger', 'Scrum'],
         },
       ],
     },
@@ -348,19 +398,20 @@ export const TRANSLATIONS: Record<Lang, Translations> = {
       entries: [
         {
           icon: 'fa-solid fa-graduation-cap',
-          degree: 'Grado en Ingeniería en Diseño y Desarrollo de Videojuegos',
+          degree: 'Grado en Diseño y Desarrollo de Videojuegos',
           school: 'Universidad Rey Juan Carlos (URJC)',
           period: '2022 – 2026',
           detail:
-            'Asignaturas relevantes: Estructuras de Datos y Algoritmos Eficientes · Bases de Datos · Fundamentos de Programación',
+            'Rama de Ingeniería. Asignaturas relevantes: Estructuras de Datos y Algoritmos Eficientes · Bases de Datos · Fundamentos de Programación',
         },
         {
           icon: 'fa-solid fa-certificate',
           degree: 'Técnico Superior en Animación 3D, Juegos y Entornos Interactivos',
-          school: 'IFP',
+          school: 'iFP',
           period: '2019 – 2021',
-          detail: 'Módulos de animación, modelado 3D y entornos interactivos.',
-          honors: 'Mención de Excelencia Académica',
+          detail:
+            'Premio a la Excelencia Académica. Módulos de animación, modelado 3D y entornos interactivos.',
+          honors: '9,33/10',
         },
       ],
     },
@@ -434,7 +485,7 @@ export const TRANSLATIONS: Record<Lang, Translations> = {
       building: 'Right now I am building:',
       typedStrings: [
         '.NET APIs backed by tests',
-        'microservices with CQRS and domain-driven structure',
+        'automations that work while I sleep',
         'carefully crafted Angular interfaces',
         'SQL queries that do not keep users waiting',
         'learning something new every week',
@@ -448,17 +499,26 @@ export const TRANSLATIONS: Record<Lang, Translations> = {
     about: {
       badge: '// 01. PROFILE',
       title: 'Engineering-backed backend',
-      p1: 'Graduate in <strong>Video Game Design and Development Engineering</strong> (URJC), with a strong foundation in <strong>data structures, algorithms and databases</strong>, and <strong>Higher Technician in 3D Animation, Games and Interactive Environments</strong> (IFP), with an <strong>Academic Excellence Award</strong>. Over time my focus has shifted to the <strong>backend</strong>: APIs, databases and architecture, where software gets serious.',
-      p2: 'At <strong>EPAM Neoris</strong> I rewrote a PowerBuilder legacy as microservices with <strong>CQRS</strong>, <strong>Vertical Slice</strong> and <strong>Dapper</strong>, then kept going on the client side with <strong>Angular</strong> and desktop in <strong>WPF</strong> (.NET 10). I also integrate <strong>AI</strong> into my daily work: generating tests, refactoring and repetitive tasks.',
+      p1: '<strong>BSc in Video Game Design and Development</strong> (Engineering branch, URJC), with a strong foundation in <strong>data structures, algorithms and databases</strong>, and <strong>Higher Technician in 3D Animation, Games and Interactive Environments</strong> (iFP, 9.33/10 and Academic Excellence Award). Over time my focus has shifted to the <strong>backend</strong>: APIs, databases and architecture, where software gets serious.',
+      p2: 'At <strong>EPAM NEORIS</strong> I spent four months as an intern on a backend team that was migrating a PowerBuilder legacy to microservices with <strong>CQRS</strong>, <strong>Vertical Slice</strong> and <strong>Dapper</strong>: I implemented the endpoints and handlers I was assigned and brought Informix queries down from over 60 seconds to under 10. Before that I spent fourteen months at <strong>Three Golden Monkeys</strong>, where I joined through my vocational training internship and stayed on the same online store project. I also integrate <strong>AI</strong> into my daily work: tests, refactoring and repetitive tasks.',
       status: 'Available for Software & Backend Developer positions',
       stats: [
         {
-          number: 'EPAM NEORIS',
-          label: 'PowerBuilder legacy migrated to microservices in production (internship)',
+          number: '60 s → 10 s',
+          label: 'Informix queries under high concurrency (EPAM NEORIS)',
         },
-        { number: 'CQRS', label: 'Commands and Queries split by slice and use case' },
-        { number: 'URJC', label: 'BSc in Video Game Design and Development Engineering' },
-        { number: 'CI/CD', label: 'Multi-stage Docker, Azure DevOps pipelines and unit tests' },
+        {
+          number: '18 months',
+          label: 'Of experience: 14 at Three Golden Monkeys and 4 at EPAM NEORIS',
+        },
+        {
+          number: 'URJC',
+          label: 'BSc in Video Game Design and Development (Engineering)',
+        },
+        {
+          number: 'CI/CD',
+          label: 'GitHub Actions and multi-stage Docker; Azure DevOps and Pull Requests in a team',
+        },
       ],
     },
     skills: {
@@ -519,15 +579,14 @@ export const TRANSLATIONS: Record<Lang, Translations> = {
           icon: 'fa-solid fa-cubes',
           title: 'Desktop & Architecture',
           level: 4,
-          desc: 'Reactive interfaces with MVVM and modular systems that are easy to maintain.',
+          desc: 'WPF applications in .NET with separated views and custom commands.',
           pills: [
             'WPF (.NET 10)',
             'XAML',
-            'MVVM',
+            'RelayCommand (ICommand)',
             'PdfPig',
             'PdfiumViewer',
             'DI (IoC)',
-            'Clean Architecture',
             'SOLID',
           ],
         },
@@ -565,32 +624,72 @@ export const TRANSLATIONS: Record<Lang, Translations> = {
     experience: {
       badge: '// 03. WORK EXPERIENCE',
       title: 'Professional Experience',
-      terminal: 'epam-neoris / backend-microservices',
-      role: '.NET Backend Developer — University internship',
-      company: 'EPAM Neoris',
-      period: 'March 2026 – June 2026',
-      intro:
-        'University internship on the backend team: migration of a PowerBuilder legacy to C# / .NET microservices, with CQRS, domain-driven structure and optimized persistence on SQL Server and IBM Informix.',
-      achievements: [
+      jobs: [
         {
-          title: 'Legacy-to-microservices migration:',
-          text: 'the client-server corporate platform nobody wanted to touch, rewritten in C# / .NET with ASP.NET Core.',
+          terminal: 'epam-neoris / backend-microservices',
+          role: '.NET Backend Developer — Internship',
+          company: 'EPAM NEORIS',
+          period: 'March 2026 – June 2026 · 4 months',
+          intro:
+            'Internship on a backend team that was migrating a PowerBuilder legacy to C# / .NET microservices with CQRS and Vertical Slice. The structure was already defined by the team; I implemented within it.',
+          achievements: [
+            {
+              title: 'Informix performance:',
+              text: 'brought queries down from over 60 seconds to under 10 in a high-concurrency environment.',
+            },
+            {
+              title: 'Endpoints and handlers:',
+              text: 'implemented the ones I was assigned with their read and write handlers (Commands/Queries).',
+            },
+            {
+              title: 'Schemas and DTOs:',
+              text: 'configured the schema for each domain context and centralized mapping with Mapster.',
+            },
+            {
+              title: 'Frontend and quality:',
+              text: 'adjusted the Angular service layer to consume the new REST APIs, with FluentValidation checks, JWT security and Swagger.',
+            },
+            {
+              title: 'Day to day:',
+              text: 'Scrum, Azure DevOps, Git with Pull Requests and AI for tests and refactoring.',
+            },
+          ],
+          tags: [
+            'C#',
+            '.NET',
+            'ASP.NET Core',
+            'CQRS',
+            'Vertical Slice',
+            'Dapper',
+            'Informix',
+            'SQL Server',
+            'Mapster',
+            'Angular',
+            'Azure DevOps',
+          ],
         },
         {
-          title: 'CQRS and Vertical Slice:',
-          text: 'Commands and Queries segregated per slice, with handlers, contracts and dependency injection per microservice. No endless "utils" folders.',
-        },
-        {
-          title: 'Persistence and performance:',
-          text: 'raw SQL with Dapper on SQL Server and IBM Informix; timeouts over 60 s reduced to under 10 s with in-memory indexed structures.',
-        },
-        {
-          title: 'Frontend Integration & Quality:',
-          text: 'DTO standardization with MapsterConfig, fault-tolerant consumption of the REST APIs in Angular, input validation with FluentValidation, JWT security, unit tests per slice and Swagger/OpenAPI documentation.',
-        },
-        {
-          title: 'DevOps and productivity:',
-          text: 'daily Scrum in Azure DevOps, Git with Pull Requests and AI where it truly pays off: generating tests, refactoring and debugging.',
+          terminal: 'three-golden-monkeys / online-store',
+          role: '.NET Backend Developer',
+          company: 'Three Golden Monkeys',
+          period: 'March 2021 – April 2022 · 14 months',
+          intro:
+            'Online store for one of the company clients. I joined through my vocational training internship and stayed on the same project for ten more months.',
+          achievements: [
+            {
+              title: 'Endpoints and business logic:',
+              text: 'built the store flow in C# / .NET.',
+            },
+            {
+              title: 'Schema and queries:',
+              text: 'modelled the relational schema and wrote the queries with Dapper on SQL Server.',
+            },
+            {
+              title: 'Contracts and tests:',
+              text: 'documented the API with Swagger and wrote unit tests for the service logic.',
+            },
+          ],
+          tags: ['C#', '.NET', 'ASP.NET Core', 'SQL Server', 'Dapper', 'Swagger', 'Scrum'],
         },
       ],
     },
@@ -624,15 +723,16 @@ export const TRANSLATIONS: Record<Lang, Translations> = {
           school: 'Rey Juan Carlos University (URJC)',
           period: '2022 – 2026',
           detail:
-            'Relevant coursework: Data Structures & Efficient Algorithms · Databases · Programming Fundamentals',
+            'Engineering branch. Relevant coursework: Data Structures & Efficient Algorithms · Databases · Programming Fundamentals',
         },
         {
           icon: 'fa-solid fa-certificate',
           degree: 'Higher Technician in 3D Animation, Games and Interactive Environments',
-          school: 'IFP',
+          school: 'iFP',
           period: '2019 – 2021',
-          detail: 'Modules in animation, 3D modelling and interactive environments.',
-          honors: 'Academic Excellence Award',
+          detail:
+            'Academic Excellence Award. Modules in animation, 3D modelling and interactive environments.',
+          honors: '9.33/10',
         },
       ],
     },
