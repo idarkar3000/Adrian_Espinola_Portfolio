@@ -199,55 +199,55 @@ const PROJECTS: Project[] = [
   },
   {
     title: 'Pdf_Signer',
-    tags: ['C#', 'WPF (.NET 10)', 'XAML', 'RelayCommand', 'PdfPig', 'PdfiumViewer'],
+    tags: ['C#', 'WPF (.NET 10)', 'MVVM', 'xUnit', 'GitHub Actions', 'PdfPig', 'PdfiumViewer'],
     url: 'https://github.com/idarkar3000/Pdf_Signer',
     category: 'desktop',
     es: {
-      subtitle: 'Visor PDF y estampado vectorial de firmas manuscritas',
+      subtitle: 'Visor PDF con firma manuscrita y cuadros de texto',
       description:
-        'Aplicación de escritorio en C# y WPF sobre .NET 10 para previsualizar PDFs y estampar firmas manuscritas de forma vectorial, sin imprimir ni escanear nada.',
+        'Aplicación de escritorio en C# y WPF sobre .NET 10 para abrir un PDF, dibujar una firma con el ratón y estamparla junto a cuadros de texto, sin imprimir ni escanear nada.',
       bullets: [
-        'Lienzo de firma con grosor ajustable y borrado por trazos.',
-        'Firma colocable y reescalable sobre el documento, con Deshacer/Rehacer (Ctrl+Z / Ctrl+Y).',
-        'PdfiumViewer para el renderizado y PdfPig para el estampado vectorial sin pérdida.',
+        'Arquitectura MVVM, con el estado del editor en un ViewModel y un núcleo sin dependencias de WPF.',
+        '71 pruebas xUnit del núcleo y CI en GitHub Actions sobre windows-latest.',
+        'Firma colocable y reescalable, cuadros de texto con color y tamaño, y Deshacer/Rehacer (Ctrl+Z / Ctrl+Y) sobre ambos.',
       ],
       ariaLabel: 'Ver repositorio de Pdf_Signer en GitHub',
       detail: {
         challenge:
-          'Firmar un PDF exigía imprimir, escanear o recurrir a suites pesadas de pago; se buscaba un flujo fluido en el escritorio con fidelidad vectorial.',
+          'Firmar un PDF exigía imprimir, escanear o recurrir a suites pesadas de pago; se buscaba un flujo fluido en el escritorio, con un solo programa y sin salir de la ventana.',
         solution: [
-          'Aplicación de escritorio en <strong>C# / WPF / .NET 10</strong> con vistas separadas y comandos propios mediante <code>RelayCommand</code> (<code>ICommand</code>).',
-          'Visor PDF con <strong>PdfiumViewer</strong>: zoom, navegación por páginas y salto a una página concreta.',
+          'Aplicación de escritorio en <strong>C# / WPF / .NET 10</strong> con arquitectura <strong>MVVM</strong>: el estado y el comportamiento viven en <code>MainViewModel</code> y la vista solo traduce eventos de ratón y teclado.',
+          'Núcleo aparte en <strong><code>Pdf_Signer.Core</code></strong>, sin dependencias de WPF: geometría en puntos PDF, historial de deshacer genérico y estampado con <strong>PdfPig</strong>.',
+          'Visor PDF con <strong>PdfiumViewer</strong>: la página se rasteriza a 216 ppp y el lienzo se mide en puntos PDF, así que las posiciones y los tamaños coinciden entre la pantalla y el PDF guardado.',
           'Lienzo de firma con trazo libre, borrado por trazos y grosor configurable, más apertura de documentos arrastrando el PDF sobre la ventana.',
-          'Motor de <strong>Deshacer/Rehacer</strong> (Ctrl+Z / Ctrl+Y) tanto para el dibujo de la firma como para su posición sobre el documento.',
-          'Exportación vectorial con <strong>PdfPig</strong>, conservando la transparencia de la firma y la integridad del PDF.',
+          '<strong>71 pruebas xUnit</strong> del núcleo y <strong>CI en GitHub Actions</strong> que compila y prueba en <code>windows-latest</code> en cada push y en cada pull request.',
         ],
         result:
-          'Estampado vectorial sin pérdida de fidelidad y un flujo de una sola ventana. No es una firma digital criptográfica: estampa una firma manuscrita, no firma con certificado.',
+          'Una herramienta de una sola ventana, con la lógica separada de la interfaz y cubierta por pruebas. La firma es manuscrita, no criptográfica: no usa certificado ni valida la identidad del firmante.',
       },
     },
     en: {
-      subtitle: 'PDF viewer with vector stamping of handwritten signatures',
+      subtitle: 'PDF viewer with handwritten signature and text boxes',
       description:
-        'Desktop application built in C# and WPF on .NET 10 to preview PDFs and stamp handwritten signatures as vectors, without printing or scanning anything.',
+        'Desktop application built in C# and WPF on .NET 10 to open a PDF, draw a signature with the mouse and stamp it together with text boxes, without printing or scanning anything.',
       bullets: [
-        'Signature canvas with adjustable stroke width and per-stroke erasing.',
-        'Signature can be moved and rescaled over the document, with Undo/Redo (Ctrl+Z / Ctrl+Y).',
-        'PdfiumViewer for rendering and PdfPig for lossless vector stamping.',
+        'MVVM architecture, with the editor state in a ViewModel and a core library with no WPF dependencies.',
+        '71 xUnit tests over the core and CI on GitHub Actions running on windows-latest.',
+        'Signature that can be placed and rescaled, text boxes with colour and size, and Undo/Redo (Ctrl+Z / Ctrl+Y) over both.',
       ],
       ariaLabel: 'View Pdf_Signer repository on GitHub',
       detail: {
         challenge:
-          'Signing a PDF meant printing, scanning or resorting to heavy paid suites; the goal was a smooth desktop flow with vector fidelity.',
+          'Signing a PDF meant printing, scanning or resorting to heavy paid suites; the goal was a smooth desktop flow, with a single program and without leaving the window.',
         solution: [
-          'Desktop app in <strong>C# / WPF / .NET 10</strong> with separated views and custom commands through <code>RelayCommand</code> (<code>ICommand</code>).',
-          'PDF viewer built on <strong>PdfiumViewer</strong>: zoom, page navigation and jump to a specific page.',
+          'Desktop app in <strong>C# / WPF / .NET 10</strong> with an <strong>MVVM</strong> architecture: state and behaviour live in <code>MainViewModel</code> and the view only translates mouse and keyboard events.',
+          'Separate core in <strong><code>Pdf_Signer.Core</code></strong>, with no WPF dependencies: PDF-point geometry, a generic undo history and stamping with <strong>PdfPig</strong>.',
+          'PDF viewer built on <strong>PdfiumViewer</strong>: the page is rasterised at 216 dpi and the canvas is measured in PDF points, so positions and sizes match between the screen and the saved PDF.',
           'Signature canvas with freehand drawing, per-stroke erasing and configurable width, plus document opening by dragging a PDF onto the window.',
-          '<strong>Undo/Redo</strong> engine (Ctrl+Z / Ctrl+Y) for both the signature drawing and its position on the document.',
-          'Vector export with <strong>PdfPig</strong>, preserving signature transparency and PDF integrity.',
+          '<strong>71 xUnit tests</strong> over the core and <strong>CI on GitHub Actions</strong> that builds and tests on <code>windows-latest</code> on every push and every pull request.',
         ],
         result:
-          'Vector stamping with no fidelity loss and a single-window flow. It is not a cryptographic digital signature: it stamps a handwritten signature, it does not sign with a certificate.',
+          'A single-window tool, with the logic separated from the interface and covered by tests. The signature is handwritten, not cryptographic: it uses no certificate and does not verify the signer identity.',
       },
     },
   },
